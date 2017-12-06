@@ -418,10 +418,10 @@ function parseInput(rplyToken, inputStr) {
   if (trigger.match(/^choice$/)!= null ){
     return choice(inputStr);
   }
-  /*//基本運算(暫時關閉)
+  ///基本運算(暫時關閉)
   if (trigger.match(/^(\d|\(|\)|\+|-|\*|\/)+$/)!= null && trigger.match(/\D/)!=null){
     return claculater(inputStr);
-  }*/
+  }//*/
   //雜項
   if (trigger.match(/^(峻崴|霍普)$/)!= null ){
     return GinWay();
@@ -497,36 +497,28 @@ function claculater(inputStr){
 }
 function claculate(inputStr){
   let tempMatch=inputStr.match(/[^()]+/).toString();
-  //乘
-  while(tempMatch.match(/\d+\*\d+/)!=null){
+  //乘除
+  while(tempMatch.match(/\d+(\*|\/)\d+/)!=null){
     //b[0]*b[1]=a
-    let a = tempMatch.match(/\d+\*\d+/).toString();
+    let a = tempMatch.match(/\d+(\*|\/)\d+/).toString();
     let b = a.match(/\d+/g);
-    let c = b[0]*b[1];
+    let c=1;
+    if(a.match(/\*/)!=null)
+      c = b[0]*b[1];
+    else if(a.match(/\//)!=null)
+      c = Math.floor(b[0]/b[1]);
     tempMatch=tempMatch.replace(a,c.toString());
   }
-  //除
-  while(tempMatch.match(/\d+\/\d+/)!=null){
-    //b[0]/b[1]=a
-    let a = tempMatch.match(/\d+\/\d+/).toString();
-    let b = a.match(/\d+/g);
-    let c = Math.floor(b[0]/b[1]);
-    tempMatch=tempMatch.replace(a,c.toString());
-  }
-  //加
-  while(tempMatch.match(/\d+\+\d+/)!=null){
+  //加減
+  while(tempMatch.match(/\d+(\+|-)\d+/)!=null){
     //b[0]+b[1]=a
-    let a = tempMatch.match(/\d+\+\d+/).toString();
+    let a = tempMatch.match(/\d+(\+|-)\d+/).toString();
     let b = a.match(/\d+/g);
-    let c = Number(b[0])+Number(b[1]);
-    tempMatch=tempMatch.replace(a,c.toString());
-  }
-  //減
-  while(tempMatch.match(/\d+-\d+/)!=null){
-    //b[0]-b[1]=a
-    let a = tempMatch.match(/\d+-\d+/).toString();
-    let b = a.match(/\d+/g);
-    let c = b[0]-b[1];
+    let c=1;
+    if(a.match(/\+/)!=null)
+      c = Number(b[0])+Number(b[1]);;
+    else if(a.match(/-/)!=null)
+      c = c = b[0]-b[1];
     tempMatch=tempMatch.replace(a,c.toString());
   }
   return tempMatch;
