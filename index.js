@@ -518,7 +518,7 @@ function claculate(inputStr){
     if(a[0].match(/\+/)!=null)
       c = Number(b[0])+Number(b[1]);;
     else if(a[0].match(/-/)!=null)
-      c = c = b[0]-b[1];
+      c = b[0]-b[1];
     tempMatch=tempMatch.replace(a,c.toString());
   }
   return tempMatch;
