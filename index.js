@@ -501,11 +501,11 @@ function claculate(inputStr){
   while(tempMatch.match(/\d+(\*|\/)\d+/)!=null){
     //b[0]*b[1]=a
     let a = tempMatch.match(/\d+(\*|\/)\d+/).toString();
-    let b = a.match(/\d+/g);
+    let b = a[0].match(/\d+/g);
     let c=1;
-    if(a.match(/\*/)!=null)
+    if(a[0].match(/\*/)!=null)
       c = b[0]*b[1];
-    else if(a.match(/\//)!=null)
+    else if(a[0].match(/\//)!=null)
       c = Math.floor(b[0]/b[1]);
     tempMatch=tempMatch.replace(a,c.toString());
   }
@@ -513,11 +513,11 @@ function claculate(inputStr){
   while(tempMatch.match(/\d+(\+|-)\d+/)!=null){
     //b[0]+b[1]=a
     let a = tempMatch.match(/\d+(\+|-)\d+/).toString();
-    let b = a.match(/\d+/g);
+    let b = a[0].match(/\d+/g);
     let c=1;
-    if(a.match(/\+/)!=null)
+    if(a[0].match(/\+/)!=null)
       c = Number(b[0])+Number(b[1]);;
-    else if(a.match(/-/)!=null)
+    else if(a[0].match(/-/)!=null)
       c = c = b[0]-b[1];
     tempMatch=tempMatch.replace(a,c.toString());
   }
