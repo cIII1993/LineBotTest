@@ -418,10 +418,10 @@ function parseInput(rplyToken, inputStr) {
   if (trigger.match(/^choice$/)!= null ){
     return choice(inputStr);
   }
-  ///基本運算(暫時關閉)
+  //基本運算(暫時關閉)
   if (trigger.match(/^(\d|\(|\)|\+|-|\*|\/)+$/)!= null && trigger.match(/\D/)!=null){
-    return claculater(inputStr);
-  }//*/
+    return claculater(trigger);
+  }//
   //雜項
   if (trigger.match(/^(峻崴|霍普)$/)!= null ){
     return GinWay();
