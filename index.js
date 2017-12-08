@@ -500,26 +500,26 @@ function claculate(inputStr){
   //乘除
   while(tempMatch.match(/\d+(\*|\/)\d+/)!=null){
     //b[0]*b[1]=a
-    let a = tempMatch.match(/\d+(\*|\/)\d+/).toString();
-    let b = a[0].match(/\d+/g);
+    let a = tempMatch.match(/\d+(\*|\/)\d+/)[0].toString();
+    let b = a.match(/\d+/g);
     let c=1;
-    if(a[0].match(/\*/)!=null)
+    if(a.match(/\*/)!=null)
       c = b[0]*b[1];
-    else if(a[0].match(/\//)!=null)
+    else if(a.match(/\//)!=null)
       c = Math.floor(b[0]/b[1]);
-    tempMatch=tempMatch.replace(a[0],c.toString());
+    tempMatch=tempMatch.replace(a,c.toString());
   }
   //加減
   while(tempMatch.match(/\d+(\+|-)\d+/)!=null){
     //b[0]+b[1]=a
-    let a = tempMatch.match(/\d+(\+|-)\d+/).toString();
-    let b = a[0].match(/\d+/g);
+    let a = tempMatch.match(/\d+(\+|-)\d+/)[0].toString();
+    let b = a.match(/\d+/g);
     let c=1;
-    if(a[0].match(/\+/)!=null)
+    if(a.match(/\+/)!=null)
       c = Number(b[0])+Number(b[1]);
-    else if(a[0].match(/-/)!=null)
+    else if(a.match(/-/)!=null)
       c = b[0]-b[1];
-    tempMatch=tempMatch.replace(a[0],c.toString());
+    tempMatch=tempMatch.replace(a,c.toString());
   }
   return tempMatch;
 }
