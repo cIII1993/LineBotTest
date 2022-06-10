@@ -591,7 +591,7 @@ class Bot {
 				returnStr += '[' + dice + ']';
 			} else {
 				dice = dice1 + dice2 + Number(s);
-				if (dice != 2) dice += Number(ca);
+				if (dice > 2) dice += Number(ca);
 				returnStr += '[' + dice1 + ',' + dice2 + ']';
 				if (s > 0) returnStr += '+' + s;
 				else if (s < 0) returnStr += s;
@@ -609,7 +609,7 @@ class Bot {
 				if (tempMatch.match(/gf$/) != null) dice2 = dice1;
 				else dice2 = Math.ceil(Math.random() * 6);
 				dice = dice1 + dice2;
-				if (dice != 2) dice += Number(ca);
+				if (dice > 2) dice += Number(ca);
 				returnStr += ',[' + dice1 + ',' + dice2 + ']';
 				if (dice > 12) {
 					damage += this.powerSheet[k][9];
@@ -617,7 +617,10 @@ class Bot {
 				else if (dice > 2) {
 					damage += this.powerSheet[k][dice - 3];
 				}
-				if( damage >= 1000) damage = '傷害爆炸囉！有好好按照規則玩嗎？';
+				if( damage >= 1000) {
+					damage = '傷害爆炸囉！有好好按照規則玩嗎？';
+					break;
+				}
 			}
 			damage = damage + Number(b);
 			if (count) {
