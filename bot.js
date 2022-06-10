@@ -583,7 +583,6 @@ class Bot {
 				returnStr += 'k值只支援0~100喔';
 				return returnStr;
 			}
-			return "test";
 			dice1 = Math.ceil(Math.random() * 6);
 			if (tempMatch.match(/gf$/) != null) dice2 = dice1;
 			else dice2 = Math.ceil(Math.random() * 6);
@@ -603,6 +602,7 @@ class Bot {
 			} else {
 				return returnStr + '→☆大失敗☆ 回家領50囉～';
 			}
+			return "test";
 			while (dice >= c) {
 				count++;
 				dice1 = Math.ceil(Math.random() * 6);
