@@ -586,7 +586,6 @@ class Bot {
 			dice1 = Math.ceil(Math.random() * 6);
 			if (tempMatch.match(/gf$/) != null) dice2 = dice1;
 			else dice2 = Math.ceil(Math.random() * 6);
-			return "test";
 			if (sFlag) {
 				dice = Number(s);
 				returnStr += '[' + dice + ']';
@@ -596,6 +595,7 @@ class Bot {
 				if (s > 0) returnStr += '+' + s;
 				else if (s < 0) returnStr += '-' + s;
 			}
+			return "test";
 			if (dice > 12) {
 				damage += powerSheet[k][9];
 			} else if (dice > 2) {
