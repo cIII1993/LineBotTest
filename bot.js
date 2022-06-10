@@ -552,6 +552,7 @@ class Bot {
 			let dice = 0;
 			let dice1 = 0;
 			let dice2 = 0;
+			let damageOverflow = false;
 			if (tempMatch.match(/k\d+/) != null) {
 				k = tempMatch.match(/k\d+/).toString();
 				k = k.match(/\d+/).toString();
@@ -619,10 +620,13 @@ class Bot {
 				}
 				if( damage >= 1000) {
 					damage = '傷害爆炸囉！有好好按照規則玩嗎？';
+					damageOverflow = true;
 					break;
 				}
 			}
-			damage = damage + Number(b);
+			if(!damageOverflow) {
+				damage = damage + Number(b);
+			}
 			if (count) {
 				returnStr = returnStr + '→' + count + '迴轉→' + damage;
 			} else {
