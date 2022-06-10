@@ -552,6 +552,7 @@ class Bot {
 			let dice = 0;
 			let dice1 = 0;
 			let dice2 = 0;
+			return "test";
 			if (tempMatch.match(/k\d+/) != null) {
 				k = tempMatch.match(/k\d+/).toString();
 				k = k.match(/\d+/).toString();
