@@ -609,7 +609,10 @@ class Bot {
 				else dice2 = Math.ceil(Math.random() * 6);
 				dice = dice1 + dice2 + Number(ca);
 				returnStr += ',[' + dice1 + ',' + dice2 + ']';
-				if (dice > 2) {
+				if (dice > 12) {
+					damage += this.powerSheet[k][9];
+				} 
+				else if (dice > 2) {
 					damage += this.powerSheet[k][dice - 3];
 				}
 			}
