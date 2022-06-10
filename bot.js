@@ -595,7 +595,7 @@ class Bot {
 				if (s > 0) returnStr += '+' + s;
 				else if (s < 0) returnStr += '-' + s;
 			}
-			return "test";
+			//return "test";
 			if (dice > 12) {
 				damage += powerSheet[k][9];
 			} else if (dice > 2) {
