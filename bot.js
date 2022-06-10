@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.3 swβ';
+		this.version = '2.3 sw';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -2297,7 +2297,7 @@ class Bot {
 			let returnStr = '';
 			if (inputStr.match(/sw/) != null) {
 				returnStr += '======================\n';
-				returnStr += 'SW2.0骰組\n';
+				returnStr += 'SW2.5骰組\n';
 				returnStr += '======================\n';
 				returnStr += '威力骰 Kn+n@n#n$nGF\n';
 				returnStr += '- Kn為威力 威力10即為K10\n';
