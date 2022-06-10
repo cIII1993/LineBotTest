@@ -593,7 +593,7 @@ class Bot {
 				dice = dice1 + dice2 + Number(s);
 				returnStr += '[' + dice1 + ',' + dice2 + ']';
 				if (s > 0) returnStr += '+' + s;
-				else if (s < 0) returnStr += +s;
+				else if (s < 0) returnStr += '-' + s;
 			}
 			if (dice > 12) {
 				damage += powerSheet[k][9];
