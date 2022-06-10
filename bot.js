@@ -618,14 +618,18 @@ class Bot {
 				else if (dice > 2) {
 					damage += this.powerSheet[k][dice - 3];
 				}
-				if( damage >= 1000) {
+				if( damage >= 3000) {
 					damage = '傷害爆炸囉！有好好按照規則玩嗎？';
 					damageOverflow = true;
 					break;
 				}
 			}
 			if(!damageOverflow) {
-				damage = damage + Number(b);
+				damage = damage + Number(b);				
+				if( damage >= 3000) {
+					damage = '傷害爆炸囉！有好好按照規則玩嗎？';
+					damageOverflow = true;
+				}
 			}
 			if (count) {
 				returnStr = returnStr + '→' + count + '迴轉→' + damage;
