@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.2 helpβ';
+		this.version = '2.3 sw';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -152,7 +152,7 @@ class Bot {
 					return this.version;
 				}
 				//SW2.0 威力骰
-				if (trigger.match(/^(k)(\d+)(((\+|-)\d+)|(@\d+)|(\$(\+|-)?\d+)|(gf))*$/) != null) {
+				if (trigger.match(/^(k)(\d+)(((\+|-)\d+)|(@\d+)|(#\d+)|(\$(\+|-)?\d+)|(gf))*$/) != null) {
 					return this.Kx(trigger);
 				}
 				//SW2.0 超越判定
@@ -538,12 +538,13 @@ class Bot {
 		////SW2.0 function 開始
 		//////sw威力表
 		Kx(inputStr) {
-			let returnStr = 'SW2.0威力表擲骰：';
+			let returnStr = 'SW2.5威力表擲骰：';
 			let tempMatch = inputStr;
 			//return tempMatch.match(/k\d+/).toString();
 			let k = 0;
 			let b = 0;
 			let c = 10;
+			let ca = 0;
 			let s = 0;
 			let sFlag = false;
 			let count = 0;
@@ -551,6 +552,7 @@ class Bot {
 			let dice = 0;
 			let dice1 = 0;
 			let dice2 = 0;
+			let damageOverflow = false;
 			if (tempMatch.match(/k\d+/) != null) {
 				k = tempMatch.match(/k\d+/).toString();
 				k = k.match(/\d+/).toString();
@@ -562,6 +564,10 @@ class Bot {
 			if (tempMatch.match(/@\d+/) != null) {
 				c = tempMatch.match(/@\d+/).toString();
 				c = c.match(/\d+/).toString();
+			}
+			if (tempMatch.match(/#\d+/) != null) {
+				ca = tempMatch.match(/#\d+/).toString();
+				ca = ca.match(/\d+/).toString();
 			}
 			if (tempMatch.match(/\$(\+|-)?\d+/) != null) {
 				s = tempMatch.match(/\$(\+|-)?\d+/)[0].toString();
@@ -586,29 +592,45 @@ class Bot {
 				returnStr += '[' + dice + ']';
 			} else {
 				dice = dice1 + dice2 + Number(s);
+				if (dice > 2) dice += Number(ca);
 				returnStr += '[' + dice1 + ',' + dice2 + ']';
 				if (s > 0) returnStr += '+' + s;
-				else if (s < 0) returnStr += +s;
+				else if (s < 0) returnStr += s;
 			}
 			if (dice > 12) {
-				damage += powerSheet[k][9];
+				damage += this.powerSheet[k][9];
 			} else if (dice > 2) {
-				damage += powerSheet[k][dice - 3];
+				damage += this.powerSheet[k][dice - 3];
 			} else {
 				return returnStr + '→☆大失敗☆ 回家領50囉～';
 			}
-			while (dice >= c) {
+			while (dice >= c && c <= 12) {
 				count++;
 				dice1 = Math.ceil(Math.random() * 6);
 				if (tempMatch.match(/gf$/) != null) dice2 = dice1;
 				else dice2 = Math.ceil(Math.random() * 6);
 				dice = dice1 + dice2;
+				if (dice > 2) dice += Number(ca);
 				returnStr += ',[' + dice1 + ',' + dice2 + ']';
-				if (dice > 2) {
-					damage += powerSheet[k][dice - 3];
+				if (dice > 12) {
+					damage += this.powerSheet[k][9];
+				} 
+				else if (dice > 2) {
+					damage += this.powerSheet[k][dice - 3];
+				}
+				if( damage >= 10000) {
+					damage = '傷害爆炸囉！有好好按照規則玩嗎？';
+					damageOverflow = true;
+					break;
 				}
 			}
-			damage = damage + Number(b);
+			if(!damageOverflow) {
+				damage = damage + Number(b);				
+				if( damage >= 10000) {
+					damage = '傷害爆炸囉！有好好按照規則玩嗎？';
+					damageOverflow = true;
+				}
+			}
 			if (count) {
 				returnStr = returnStr + '→' + count + '迴轉→' + damage;
 			} else {
@@ -2275,11 +2297,12 @@ class Bot {
 			let returnStr = '';
 			if (inputStr.match(/sw/) != null) {
 				returnStr += '======================\n';
-				returnStr += 'SW2.0骰組\n';
+				returnStr += 'SW2.5骰組\n';
 				returnStr += '======================\n';
-				returnStr += '威力骰 Kn+n@n$nGF\n';
+				returnStr += '威力骰 Kn+n@n#n$nGF\n';
 				returnStr += '- Kn為威力 威力10即為K10\n';
 				returnStr += '- @n為c值 @8即為c值8\n';
+				returnStr += '- #為必殺攻擊 #n為增加骰目 一般來講是#1\n';
 				returnStr += '- $為骰目更改 $±n為增加/減少骰目 $n為指定骰目\n';
 				returnStr += '- GF為極限命運\n';
 				returnStr += '- Ex：K10+3@7$+1\n';
