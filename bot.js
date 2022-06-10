@@ -152,7 +152,7 @@ class Bot {
 					return this.version;
 				}
 				//SW2.0 威力骰
-				if (trigger.match(/^(k)(\d+)(((\+|-)\d+)|(@\d+)|(\$(\+|-)?\d+)|(gf))*$/) != null) {
+				if (trigger.match(/^(k)(\d+)(((\+|-)\d+)|(@\d+)|(#\d+)|(\$(\+|-)?\d+)|(gf))*$/) != null) {
 					return this.Kx(trigger);
 				}
 				//SW2.0 超越判定
@@ -538,12 +538,13 @@ class Bot {
 		////SW2.0 function 開始
 		//////sw威力表
 		Kx(inputStr) {
-			let returnStr = 'SW2.0威力表擲骰：';
+			let returnStr = 'SW2.5威力表擲骰：';
 			let tempMatch = inputStr;
 			//return tempMatch.match(/k\d+/).toString();
 			let k = 0;
 			let b = 0;
 			let c = 10;
+			let ca = 0;
 			let s = 0;
 			let sFlag = false;
 			let count = 0;
@@ -562,6 +563,10 @@ class Bot {
 			if (tempMatch.match(/@\d+/) != null) {
 				c = tempMatch.match(/@\d+/).toString();
 				c = c.match(/\d+/).toString();
+			}
+			if (tempMatch.match(/#\d+/) != null) {
+				ca = tempMatch.match(/#\d+/).toString();
+				ca = ca.match(/\d+/).toString();
 			}
 			if (tempMatch.match(/\$(\+|-)?\d+/) != null) {
 				s = tempMatch.match(/\$(\+|-)?\d+/)[0].toString();
