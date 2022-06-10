@@ -552,7 +552,6 @@ class Bot {
 			let dice = 0;
 			let dice1 = 0;
 			let dice2 = 0;
-			return "test";
 			if (tempMatch.match(/k\d+/) != null) {
 				k = tempMatch.match(/k\d+/).toString();
 				k = k.match(/\d+/).toString();
@@ -584,6 +583,7 @@ class Bot {
 				returnStr += 'k值只支援0~100喔';
 				return returnStr;
 			}
+			return "test";
 			dice1 = Math.ceil(Math.random() * 6);
 			if (tempMatch.match(/gf$/) != null) dice2 = dice1;
 			else dice2 = Math.ceil(Math.random() * 6);
