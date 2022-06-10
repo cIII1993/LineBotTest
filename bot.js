@@ -590,7 +590,7 @@ class Bot {
 				dice = Number(s);
 				returnStr += '[' + dice + ']';
 			} else {
-				dice = dice1 + dice2 + Number(s);
+				dice = dice1 + dice2 + Number(s) + ca;
 				returnStr += '[' + dice1 + ',' + dice2 + ']';
 				if (s > 0) returnStr += '+' + s;
 				else if (s < 0) returnStr += s;
@@ -607,7 +607,7 @@ class Bot {
 				dice1 = Math.ceil(Math.random() * 6);
 				if (tempMatch.match(/gf$/) != null) dice2 = dice1;
 				else dice2 = Math.ceil(Math.random() * 6);
-				dice = dice1 + dice2;
+				dice = dice1 + dice2 + ca;
 				returnStr += ',[' + dice1 + ',' + dice2 + ']';
 				if (dice > 2) {
 					damage += this.powerSheet[k][dice - 3];
