@@ -604,7 +604,7 @@ class Bot {
 			} else {
 				return returnStr + '→☆大失敗☆ 回家領50囉～';
 			}
-			while (dice >= c) {
+			while (dice >= c && c <= 12) {
 				count++;
 				dice1 = Math.ceil(Math.random() * 6);
 				if (tempMatch.match(/gf$/) != null) dice2 = dice1;
@@ -2299,9 +2299,10 @@ class Bot {
 				returnStr += '======================\n';
 				returnStr += 'SW2.0骰組\n';
 				returnStr += '======================\n';
-				returnStr += '威力骰 Kn+n@n$nGF\n';
+				returnStr += '威力骰 Kn+n@n#n$nGF\n';
 				returnStr += '- Kn為威力 威力10即為K10\n';
 				returnStr += '- @n為c值 @8即為c值8\n';
+				returnStr += '- #為必殺攻擊 #n為增加骰目 一般來講是#1\n';
 				returnStr += '- $為骰目更改 $±n為增加/減少骰目 $n為指定骰目\n';
 				returnStr += '- GF為極限命運\n';
 				returnStr += '- Ex：K10+3@7$+1\n';
