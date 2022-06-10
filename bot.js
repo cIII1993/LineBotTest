@@ -596,13 +596,12 @@ class Bot {
 				else if (s < 0) returnStr += s;
 			}
 			if (dice > 12) {
-				damage += powerSheet[k][9];
+				damage += this.powerSheet[k][9];
 			} else if (dice > 2) {
-				damage += powerSheet[k][dice - 3];
+				damage += this.powerSheet[k][dice - 3];
 			} else {
 				return returnStr + '→☆大失敗☆ 回家領50囉～';
 			}
-			return "test";
 			while (dice >= c) {
 				count++;
 				dice1 = Math.ceil(Math.random() * 6);
@@ -611,7 +610,7 @@ class Bot {
 				dice = dice1 + dice2;
 				returnStr += ',[' + dice1 + ',' + dice2 + ']';
 				if (dice > 2) {
-					damage += powerSheet[k][dice - 3];
+					damage += this.powerSheet[k][dice - 3];
 				}
 			}
 			damage = damage + Number(b);
