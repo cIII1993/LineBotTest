@@ -586,6 +586,7 @@ class Bot {
 			dice1 = Math.ceil(Math.random() * 6);
 			if (tempMatch.match(/gf$/) != null) dice2 = dice1;
 			else dice2 = Math.ceil(Math.random() * 6);
+			return "test";
 			if (sFlag) {
 				dice = Number(s);
 				returnStr += '[' + dice + ']';
@@ -602,7 +603,6 @@ class Bot {
 			} else {
 				return returnStr + '→☆大失敗☆ 回家領50囉～';
 			}
-			return "test";
 			while (dice >= c) {
 				count++;
 				dice1 = Math.ceil(Math.random() * 6);
