@@ -595,7 +595,6 @@ class Bot {
 				if (s > 0) returnStr += '+' + s;
 				else if (s < 0) returnStr += '-' + s;
 			}
-			//return "test";
 			if (dice > 12) {
 				damage += powerSheet[k][9];
 			} else if (dice > 2) {
@@ -603,6 +602,7 @@ class Bot {
 			} else {
 				return returnStr + '→☆大失敗☆ 回家領50囉～';
 			}
+			return "test";
 			while (dice >= c) {
 				count++;
 				dice1 = Math.ceil(Math.random() * 6);
