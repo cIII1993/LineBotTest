@@ -255,7 +255,7 @@ class Bot {
 					return this.wqm(trigger);
 				}
 				//wqt骰
-				if (trigger.match(/^wq/) != null) {
+				if (trigger.match(/^wqt/) != null) {
 					return this.wqt(trigger);
 				}
 				//cookJudge骰
