@@ -247,7 +247,7 @@ class Bot {
 					return this.fudge(trigger);
 				}
 				//wq骰
-				if (trigger.match(/^wq\d+/) != null) {
+				if (trigger.match(/^wq(\d|\+|-)+/) != null) {
 					return this.wq(trigger);
 				}
 				//wqm骰
@@ -1286,7 +1286,7 @@ class Bot {
 		wq(inputStr){
 			let returnStr = '小魔女擲骰：';
 			let num = Number(inputStr.match(/\d+/)[0]);
-			if (num <= 0)	returnStr += '次數不能小於0喔';
+			if (num == undefined || num <= 0)	returnStr += '次數不能小於0喔';
 			else{
 				let success = 0;
 				for (let i = 0; i < num; i++){
@@ -1325,7 +1325,7 @@ class Bot {
 		//////wq魔法骰
 		wqm(inputStr){
 			let returnStr = '小魔女擲骰：';
-			let num = Number(inputStr.match(/\d+/)[0]);
+			let num = eval(inputStr.replace('wq', ''));
 			if (num <= 0)	returnStr += '成功率不能小於0喔';
 			else {
 				let dice1 = Math.ceil(Math.random() * 6);
