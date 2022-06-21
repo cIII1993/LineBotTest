@@ -145,7 +145,7 @@ class Bot {
 				let trigger = mainMsg[0].toString().toLowerCase();
 				//let trigger2 = mainMsg[1].toString().toLowerCase(); 
 				//help
-				if (trigger.match(new RegExp(`^(sw|sg|dryh|toy|${this.helpList.map(h => h.reg.toLowerCase()).join("|")})?(help|幫助)$`, "g")) != null) {
+				if (trigger.match(new RegExp(`^(sw|sg|dryh|toy|wq|${this.helpList.map(h => h.reg.toLowerCase()).join("|")})?(help|幫助)$`, "g")) != null) {
 					return this.help(trigger);
 				}
 				if (trigger.match(/^ver$/) != null) {
