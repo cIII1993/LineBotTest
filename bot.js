@@ -1286,17 +1286,17 @@ class Bot {
 		wq(inputStr){
 			let returnStr = '小魔女擲骰：';
 			let num = Number(inputStr.match(/\d+/)[0]);
-			if(num <= 0)	returnStr += '次數不能小於0喔';
+			if (num <= 0)	returnStr += '次數不能小於0喔';
 			else{
 				let success = 0;
-				for(let i = 0; i < num; i++){
+				for (let i = 0; i < num; i++){
 					let dice1 = Math.ceil(Math.random() * 6);
 					let dice2 = Math.ceil(Math.random() * 6);
 					returnStr += '[' + dice1 + ',' + dice2 + + '] ;
-					if(dice1 == dice2) success ++;
+					if (dice1 == dice2) success ++;
 				}
 				returnStr += ' → ';
-				switch(success){
+				switch (success){
 					case 0:
 						returnStr += '失敗';
 						break;
@@ -1326,13 +1326,13 @@ class Bot {
 		wqm(inputStr){
 			let returnStr = '小魔女擲骰：';
 			let num = Number(inputStr.match(/\d+/)[0]);
-			if(num <= 0)	returnStr += '成功率不能小於0喔';
-			else{
+			if (num <= 0)	returnStr += '成功率不能小於0喔';
+			else {
 				let dice1 = Math.ceil(Math.random() * 6);
 				let dice2 = Math.ceil(Math.random() * 6);
 				returnStr += diec1 + ' × ' + dice2 + ' → ';
-				if(dice1 * dice2 == 36) returnStr += '☆大失敗☆';
-				else if(dice1 * dice2 <= num) returnStr += '成功';				
+				if (dice1 * dice2 == 36) returnStr += '☆大失敗☆';
+				else if (dice1 * dice2 <= num) returnStr += '成功';				
 				else returnStr += '失敗';
 			}
 			return returnStr;
