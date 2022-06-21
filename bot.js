@@ -246,6 +246,10 @@ class Bot {
 				if (trigger.match(/^fg(\+\d+|-\d+)*$/) != null) {
 					return this.fudge(trigger);
 				}
+				//wq骰
+				if (trigger.match(/^wq\d+/) != null) {
+					return this.wq(trigger);
+				}
 				//cookJudge骰
 				if (inputStr.match(/^ck (\S+ )+/i) != null) {
 					return this.cookJudge(inputStr);
