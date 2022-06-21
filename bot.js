@@ -1292,7 +1292,7 @@ class Bot {
 				for (let i = 0; i < num; i++){
 					let dice1 = Math.ceil(Math.random() * 6);
 					let dice2 = Math.ceil(Math.random() * 6);
-					returnStr += '[' + dice1 + ',' + dice2 + + '] ;
+					returnStr += '[' + dice1 + ',' + dice2 + ']' ;
 					if (dice1 == dice2) success ++;
 				}
 				returnStr += ' → ';
