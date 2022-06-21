@@ -1330,7 +1330,7 @@ class Bot {
 			else {
 				let dice1 = Math.ceil(Math.random() * 6);
 				let dice2 = Math.ceil(Math.random() * 6);
-				returnStr += diec1 + ' × ' + dice2 + ' → ';
+				returnStr += dice1 + ' × ' + dice2 + ' → ';
 				if (dice1 * dice2 == 36) returnStr += '☆大失敗☆';
 				else if (dice1 * dice2 <= num) returnStr += '成功';				
 				else returnStr += '失敗';
