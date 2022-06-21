@@ -1269,6 +1269,48 @@ class Bot {
 			return returnStr;
 		}
 		////Fudge骰結束
+		////wq骰開始
+		//////行為判定骰
+		wq(inputStr){
+			let returnStr = '小魔女擲骰：';
+			let num = Number(inputStr.match(/\d+/)[0]);
+			if(num <= 0)	returnStr += '次數不能小於0喔';
+			else{
+				let success = 0;
+				for(let i = 0; i < num; i++){
+					let dice1 = Math.ceil(Math.random() * 6);
+					let dice2 = Math.ceil(Math.random() * 6);
+					returnStr += '[' + dice1 + ',' + dice2 + + '] ;
+					if(dice1 == dice2) success ++;
+				}
+				returnStr += ' → ';
+				switch(success){
+					case 0:
+						returnStr += '失敗';
+						break;
+					case 1:
+						returnStr += '成功（一階）';
+						break;
+					case 2:
+						returnStr += '大成功（二階）';
+						break;
+					case 3:
+						returnStr += '奇蹟的成功（三階）';
+						break;
+					case 4:
+						returnStr += '創造歷史的成功（四階）';
+						break;
+					case 5:
+						returnStr += '傳奇成功（五階）';
+						break;
+					default:
+						returnStr += '神話級成功（六階）';
+						break;
+				}
+			}
+			return returnStr;
+		}
+		////wq骰結束
 		////cook骰開始
 		cook(inputStr){
 			let returnStr = '料理擲骰：';
@@ -2353,6 +2395,13 @@ class Bot {
 				returnStr += '鑑定武器骰 「鑑定 物品名」 或 「apsw 物品名」\n';
 				returnStr += '鑑定防具骰 「鑑定防具 物品名」 或 「apsa 物品名」\n';
 				returnStr += '鑑定道具骰 「鑑定道具 物品名」 或 「apsi 物品名」\n';
+			} else if (inputStr.match(/wq/) != null) {
+				returnStr += '======================\n';
+				returnStr += '小魔女骰組\n';
+				returnStr += '======================\n';
+				returnStr += '行為判定骰 WQn\n';
+				returnStr += '魔法骰 WQMn\n';
+				returnStr += '塔羅骰 WQT\n';
 			} else {
 				for (let h of this.helpList) {
 					if (inputStr.match(new RegExp(`${h.reg.toLowerCase()}`, "g")) != null) {
@@ -2401,6 +2450,9 @@ class Bot {
 				returnStr += '======================\n';
 				returnStr += '======================\n';
 				returnStr += '請勿入睡骰組|詳見 dryhHelp\n';
+				returnStr += '======================\n';
+				returnStr += '======================\n';
+				returnStr += '小魔女骰組|詳見 wqHelp\n';
 				returnStr += '======================\n';
 				returnStr += '======================\n';
 				returnStr += '其他玩具|詳見 toyHelp\n';
