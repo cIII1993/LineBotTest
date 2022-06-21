@@ -1330,7 +1330,7 @@ class Bot {
 			else {
 				let dice1 = Math.ceil(Math.random() * 6);
 				let dice2 = Math.ceil(Math.random() * 6);
-				returnStr += dice1 + '×' + dice2 + ' <= ' + num + ' → ';
+				returnStr += dice1 + '×' + dice2 + ' = ' + dice1 * dice2 + ' <= ' + num + ' → ';
 				if (dice1 * dice2 == 36) returnStr += '☆大失敗☆';
 				else if (dice1 * dice2 <= num) returnStr += '成功';				
 				else returnStr += '失敗';
@@ -2434,7 +2434,9 @@ class Bot {
 				returnStr += '小魔女骰組\n';
 				returnStr += '======================\n';
 				returnStr += '行為判定骰 WQn\n';
+				returnStr += '- n為骰子數量\n';
 				returnStr += '魔法骰 WQMn\n';
+				returnStr += '- n為魔法成功率\n';
 				returnStr += '塔羅骰 WQT\n';
 			} else {
 				for (let h of this.helpList) {
