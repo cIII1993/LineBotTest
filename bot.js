@@ -250,6 +250,14 @@ class Bot {
 				if (trigger.match(/^wq\d+/) != null) {
 					return this.wq(trigger);
 				}
+				//wqm骰
+				if (trigger.match(/^wqm\d+/) != null) {
+					return this.wqm(trigger);
+				}
+				//wqt骰
+				if (trigger.match(/^wq/) != null) {
+					return this.wqt(trigger);
+				}
 				//cookJudge骰
 				if (inputStr.match(/^ck (\S+ )+/i) != null) {
 					return this.cookJudge(inputStr);
@@ -1274,7 +1282,7 @@ class Bot {
 		}
 		////Fudge骰結束
 		////wq骰開始
-		//////行為判定骰
+		//////wq行為判定骰
 		wq(inputStr){
 			let returnStr = '小魔女擲骰：';
 			let num = Number(inputStr.match(/\d+/)[0]);
@@ -1312,6 +1320,28 @@ class Bot {
 						break;
 				}
 			}
+			return returnStr;
+		}
+		//////wq魔法骰
+		wqm(inputStr){
+			let returnStr = '小魔女擲骰：';
+			let num = Number(inputStr.match(/\d+/)[0]);
+			if(num <= 0)	returnStr += '成功率不能小於0喔';
+			else{
+				let dice1 = Math.ceil(Math.random() * 6);
+				let dice2 = Math.ceil(Math.random() * 6);
+				returnStr += diec1 + ' × ' + dice2 + ' → ';
+				if(dice1 * dice2 == 36) returnStr += '☆大失敗☆';
+				else if(dice1 * dice2 <= num) returnStr += '成功';				
+				else returnStr += '失敗';
+			}
+			return returnStr;
+		}
+		//////wq塔羅骰
+		wqt(inputStr){
+			let returnStr = '小魔女擲骰：';
+			let sheet = ['星辰', '公主', '杖', '國王', '愛人', '血', '太陽', '貓', '仙女', '風', '毒藥', '夢', '惡夢', '平衡', '月', '寶石', '劍', '風暴', '龍', '深空', '大海', '魔女', '銀', '河川', '黃金', '天空', '戰士', '旅人', '騙子'];
+			returnStr += sheet[Math.floor(Math.random() * sheet.length)];
 			return returnStr;
 		}
 		////wq骰結束
