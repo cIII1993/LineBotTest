@@ -259,7 +259,7 @@ class Bot {
 					return this.wqt(trigger);
 				}
 				//qy骰
-				if (trigger.match(/^qy(sp|sm|at|wt)?d*$/) != null) {
+				if (trigger.match(/^qy(sp|sm|at|wt)?\d*$/) != null) {
 					return this.qy(trigger);
 				}
 				//cookJudge骰
