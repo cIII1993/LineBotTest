@@ -2544,7 +2544,7 @@ class Bot {
 				returnStr += '塔羅骰 WQT\n';
 			} else if (inputStr.match(/qy/) != null) {
 				returnStr += '======================\n';
-				returnStr += '平靜之年組\n';
+				returnStr += '平靜之年骰組\n';
 				returnStr += '======================\n';
 				returnStr += '抽牌骰 QY\n';
 				returnStr += '- 可在後面接上春（SP）、夏（SM）、秋（AT）、冬（WT）\n';
