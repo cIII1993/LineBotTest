@@ -2593,15 +2593,13 @@ class Bot {
 				returnStr += '======================\n';
 				returnStr += 'SW2.0骰組|詳見 swHelp\n';
 				returnStr += '======================\n';
-				returnStr += '======================\n';
 				returnStr += '忍神骰組|詳見 sgHelp\n';
-				returnStr += '======================\n';
 				returnStr += '======================\n';
 				returnStr += '請勿入睡骰組|詳見 dryhHelp\n';
 				returnStr += '======================\n';
-				returnStr += '======================\n';
 				returnStr += '小魔女骰組|詳見 wqHelp\n';
 				returnStr += '======================\n';
+				returnStr += '平靜之年骰組|詳見 qyHelp\n';
 				returnStr += '======================\n';
 				returnStr += '其他玩具|詳見 toyHelp\n';
 				returnStr += '======================\n';
