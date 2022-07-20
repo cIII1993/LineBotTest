@@ -1406,6 +1406,7 @@ class Bot {
 			//描述
 			let sheet = null;
 			if (inputStr.match(/sp/) != null) {
+				sheet = ['What group has the highest status in the community?\nWhat must people do to gain inclusion in this group?\n or... \nAre there distinct family units in the community? If so,\nwhat family structures are common?','There’s a large body of water on the map.\nWhere is it? What does it look like?\n or... \nThere’s a giant, man-made structure on the map.\nWhere is it? Why is it abandoned?','Someone new arrives. Who?\n or... \nTwo of the community’s younger members\nget into a fight. What provoked them?','What important and basic tools\ndoes the community lack?\n or... \nWhere are you storing your food?\nWhy is this a risky place to store things?','There is a disquieting legend about this place. What is it?\n or... \nAlarming weather patterns destroy something.\nHow and what?','Are there children in your community? If there are,\nwhat is their role in the community?\n or... \nHow old are the eldest members of the community?\nWhat special needs do they have?','Where does everyone sleep? Who is unhappy\nwith this arrangement, and why?\n or... \nWhat natural predators roam this area? Are you safe?','An old piece of machinery is discovered,\nbroken but perhaps repairable. What is it?\nWhat would it be useful for?\n\n or... \nAn old piece of machinery is discovered, cursed and\ndangerous. How does the community destroy it?','A charismatic young girl convinces many to help her\nwith an elaborate scheme. What is it? Who joins her\nendeavors? Start a project to reflect.\n or... \nA charismatic young girl tries to tempt many into\nsinful or dangerous activity. Why does she do this?\nHow does the community respond?','There’s another community somewhere on the map.\nWhere are they? What sets them apart from you?\n or... \nWhat belief or practice helps to unify your community?','You see a good omen. What is it?\n or... \nYou see a bad omen. What is it?','What’s the most beautiful thing in this area?\n or... \nWhat’s the most hideous thing in this area?','A young boy starts digging in the ground, and\ndiscovers something unexpected. What is it?\n or... \nAn old man confesses to past crimes\nand atrocities. What has he done?'];
 			}
 			if (inputStr.match(/sm/) != null) {
 			}
@@ -1416,24 +1417,30 @@ class Bot {
 			
 			if(sheet != null){
 				returnStr += '\n';
+				returnStr += sheet[ans[0]];
 			}
 			
 			//下次抽卡
 			returnStr += '\n'
-			returnStr += '次回： qy'
-			if (inputStr.match(/sp/) != null) {
-				returnStr += 'sp';
+			if(ans[1] != 0){
+				returnStr += '次回： qy'
+				if (inputStr.match(/sp/) != null) {
+					returnStr += 'sp';
+				}
+				if (inputStr.match(/sm/) != null) {
+					returnStr += 'sm';
+				}
+				if (inputStr.match(/at/) != null) {
+					returnStr += 'at';
+				}
+				if (inputStr.match(/wt/) != null) {
+					returnStr += 'wt';
+				}
+				returnStr += ans[1];
 			}
-			if (inputStr.match(/sm/) != null) {
-				returnStr += 'sm';
+			else{
+				returnStr += '牌庫已空';
 			}
-			if (inputStr.match(/at/) != null) {
-				returnStr += 'at';
-			}
-			if (inputStr.match(/wt/) != null) {
-				returnStr += 'wt';
-			}
-			returnStr += ans[1];	
 			return returnStr;
 		}
 		////qy骰結束
