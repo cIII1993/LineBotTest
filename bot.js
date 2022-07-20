@@ -258,6 +258,10 @@ class Bot {
 				if (trigger.match(/^wqt/) != null) {
 					return this.wqt(trigger);
 				}
+				//qy骰
+				if (trigger.match(/^qy(sp|sm|at|wt)?d*$/) != null) {
+					return this.qy(trigger);
+				}
 				//cookJudge骰
 				if (inputStr.match(/^ck (\S+ )+/i) != null) {
 					return this.cookJudge(inputStr);
@@ -1353,6 +1357,86 @@ class Bot {
 			return returnStr;
 		}
 		////wq骰結束
+		////qy骰開始
+		pokerSuit(num){	
+			let n = num;
+			let poker = new Array();
+			for(let i = 0; i < 13; i ++){
+				if(n%2 == 1){
+					poker.push(i);
+					n -= 1;
+				}
+				n = n/2;
+			}
+			let output = Math.floor(Math.random() * poker.length);
+			output = poker[output];
+			return [output, num - Math.pow(2, output)];
+		}
+		qy(inputStr){
+			let returnStr = '平靜之年擲骰：';
+			//排庫
+			let num = 0;
+			if (inputStr.match(/\d+/) == null) {
+				num = 8191;	//2^13-1
+			}
+			else {
+				num = Number(inputStr.match(/\d+/)[0].toString());
+			}
+			if(num == 0){
+				return returnStr + '牌庫已空';
+			}
+			let ans = this.pokerSuit(num);
+			//花色
+			if (inputStr.match(/sp/) != null) {
+				returnStr += '♥';
+			}
+			if (inputStr.match(/sm/) != null) {
+				returnStr += '♦';
+			}
+			if (inputStr.match(/at/) != null) {
+				returnStr += '♣';
+			}
+			if (inputStr.match(/wt/) != null) {
+				returnStr += '♠';
+			}
+			//排
+			let poker_sheet = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+			returnStr += poker_sheet[ans[0]];
+			
+			//描述
+			let sheet = null;
+			if (inputStr.match(/sp/) != null) {
+			}
+			if (inputStr.match(/sm/) != null) {
+			}
+			if (inputStr.match(/at/) != null) {
+			}
+			if (inputStr.match(/wt/) != null) {
+			}
+			
+			if(sheet != null){
+				returnStr += '\n';
+			}
+			
+			//下次抽卡
+			returnStr += '\n'
+			returnStr += '次回： qy'
+			if (inputStr.match(/sp/) != null) {
+				returnStr += 'sp';
+			}
+			if (inputStr.match(/sm/) != null) {
+				returnStr += 'sm';
+			}
+			if (inputStr.match(/at/) != null) {
+				returnStr += 'at';
+			}
+			if (inputStr.match(/wt/) != null) {
+				returnStr += 'wt';
+			}
+			returnStr += ans[1];	
+			return returnStr;
+		}
+		////qy骰結束
 		////cook骰開始
 		cook(inputStr){
 			let returnStr = '料理擲骰：';
