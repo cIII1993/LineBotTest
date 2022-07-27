@@ -1456,9 +1456,9 @@ class Bot {
 		////em骰開始
 		em(inputStr){
 			let returnStr = 'エモクロア擲骰：';
-			let dice_num = inputStr.match(/\d+e/)[0];
+			let dice_num = inputStr.match(/\d+e/);
 			if(dice_num != null){
-				dice_num = Number(dice_num.match(/\d+/)[0]);
+				dice_num = Number(dice_num[0].match(/\d+/)[0]);
 			}
 			else{
 				dice_num = 1;
