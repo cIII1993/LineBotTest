@@ -262,8 +262,8 @@ class Bot {
 				if (trigger.match(/^qy(sp|sm|at|wt)?\d*$/) != null) {
 					return this.qy(trigger);
 				}				
-				//qy骰
-				if (trigger.match(/^/d*em/d+$/) != null) {
+				//em骰
+				if (trigger.match(/^\d*em\d+$/) != null) {
 					return this.em(trigger);
 				}
 				//cookJudge骰
