@@ -261,6 +261,10 @@ class Bot {
 				//qy骰
 				if (trigger.match(/^qy(sp|sm|at|wt)?\d*$/) != null) {
 					return this.qy(trigger);
+				}				
+				//qy骰
+				if (trigger.match(/^/d*em/d+$/) != null) {
+					return this.em(trigger);
 				}
 				//cookJudge骰
 				if (inputStr.match(/^ck (\S+ )+/i) != null) {
@@ -1449,6 +1453,61 @@ class Bot {
 			return returnStr;
 		}
 		////qy骰結束
+		////em骰開始
+		em(inputStr){
+			let returnStr = 'エモクロア擲骰：';
+			let dice_num = inputStr.match(/\d+e/)[0];
+			if(dice_num != null){
+				dice_num = Number(dice_num.match(/\d+/)[0]);
+			}
+			else{
+				dice_num = 1;
+			}
+			let target_num = inputStr.match(/m\d+/)[0];
+			target_num = Number(target_num.match(/\d+/)[0]);
+			let suc_num = 0;
+			returnStr += '[';
+			for(let i = 0; i < dice_num;){
+				let dice = Math.ceil(Math.random() * 10);
+				if(dice == 1){
+					suc_num += 1;
+				}
+				else if(dice == 10){
+					suc_num -= 1;
+				}
+				if(dice <= target_num){
+					suc_num += 1;
+				}
+				returnStr += '' + dice;
+				if(++i < dice_num)
+					returnStr += ',';
+			}
+			returnStr += '] → ';
+			returnStr += suc_num + ' → ';
+			if(suc_num <= -1){
+				returnStr += '致命失敗';
+			}
+			else if(suc_num == 0){
+				returnStr += '失敗';
+			}
+			else if(suc_num == 1){
+				returnStr += '一般成功';
+			}
+			else if(suc_num == 2){
+				returnStr += '有效成功';
+			}
+			else if(suc_num == 3){
+				returnStr += '極限成功';
+			}
+			else if(suc_num <= 9){
+				returnStr += '奇蹟成功';
+			}
+			else{
+				returnStr += '災厄級成功';
+			}
+			return returnStr;
+		}
+		////em骰結束
 		////cook骰開始
 		cook(inputStr){
 			let returnStr = '料理擲骰：';
