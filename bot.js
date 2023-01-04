@@ -264,7 +264,7 @@ class Bot {
 				}				
 				//dnd骰
 				if (trigger.match(/^dndbuild$/) != null) {
-					return this.dndbuild();
+					return this.dndBuild();
 				}				
 				//em骰
 				if (trigger.match(/^\d*em\d+$/) != null) {
