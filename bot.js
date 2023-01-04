@@ -262,6 +262,10 @@ class Bot {
 				if (trigger.match(/^qy(sp|sm|at|wt)?\d*$/) != null) {
 					return this.qy(trigger);
 				}				
+				//dnd骰
+				if (trigger.match(/^dndbuild$/) != null) {
+					return this.dndbuild();
+				}				
 				//em骰
 				if (trigger.match(/^\d*em\d+$/) != null) {
 					return this.em(trigger);
@@ -1508,6 +1512,19 @@ class Bot {
 			return returnStr;
 		}
 		////em骰結束
+		////dnd骰開始
+		dndBuild(){
+			let returnStr = 'DnD創角（4d6取3）：';
+			for(let i = 0; i < 6; i ++){
+				returnStr += '\n';
+				let dice = [Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6)];
+				dice.sort();
+				returnStr += "[" +dice[3] + ", " + dice[2] + ", " + dice[1] + ", " + dice[0] + ", " + "]→";
+				returnStr += dice[3] + dice[2] + dice[1];
+			}
+			return returnStr;
+		}
+		////dnd骰結束
 		////cook骰開始
 		cook(inputStr){
 			let returnStr = '料理擲骰：';
