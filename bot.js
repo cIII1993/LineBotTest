@@ -1519,7 +1519,7 @@ class Bot {
 				returnStr += '\n';
 				let dice = [Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6), Math.ceil(Math.random() * 6)];
 				dice.sort();
-				returnStr += "[" +dice[3] + ", " + dice[2] + ", " + dice[1] + ", " + dice[0] + ", " + "]→";
+				returnStr += "[" +dice[3] + ", " + dice[2] + ", " + dice[1] + ", " + dice[0]  + "]→";
 				returnStr += dice[3] + dice[2] + dice[1];
 			}
 			return returnStr;
@@ -2665,6 +2665,12 @@ class Bot {
 				returnStr += '======================\n';
 				returnStr += 'CC<=n(n)\n';
 				returnStr += '- (n)為獎勵骰 負數為懲罰骰\n';
+				returnStr += '\n';
+				returnStr += '======================\n';
+				returnStr += 'dnd骰組\n';
+				returnStr += '======================\n';
+				returnStr += 'dndBuild\n';
+				returnStr += '- 創造dnd角色\n';
 				returnStr += '\n';
 				returnStr += '======================\n';
 				returnStr += 'SW2.0骰組|詳見 swHelp\n';
