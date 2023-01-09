@@ -565,7 +565,23 @@ class Bot {
 		}
 		////week
 		week(inputStr) {
-			let returnStr = inputStr;
+			let returnStr = '基本骰組：';
+			let num = inputStr.split('\');
+			returnStr += new Date(num[0], num[1]-1, num[2]);
+			/*
+			if(num[1] > 12)
+				return '基本骰組：日期錯誤';
+			let y = num[0] - 2021;
+			let d = y * 365 + Math.floor(y/4) - Math.floor(y/100);
+			let m = [31, 28 + Math.floor(y/4) - Math.floor(y/100), 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];			
+			if(num[2] > m[num[1]])
+				return '基本骰組：日期錯誤';
+			for(let i = 0; i < num[1] - 1; i ++){
+				d += m[i];
+			}
+			d += num[2];
+			d %= 7;
+			*/
 			return returnStr;
 		}
 		////SW2.0 function 開始
