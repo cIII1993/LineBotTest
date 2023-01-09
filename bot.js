@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.7 dndβ';
+		this.version = '2.8 weekβ';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -298,6 +298,10 @@ class Bot {
 				if (trigger.match(/^choice\d+$/) != null) {
 					return this.choiceN(inputStr);
 				}
+				//基本骰組 week
+				if (trigger.match(/^\d+\\\d\d?\\\d\d?$/) != null) {
+					return this.week(trigger);
+				}
 				///基本運算
 				if (trigger.match(/[^\d\+\-\*\/%\(\)\.d><=]/) == null &&
 					trigger.match(/[\+\-\*\/%><=]/) != null &&
@@ -557,6 +561,11 @@ class Bot {
 			inputStr = inputStr.toLowerCase().replace('choice ', '');
 			let option = inputStr.split(' ');
 			let returnStr = '隨機選取：' + option[Math.floor(Math.random() * option.length)];
+			return returnStr;
+		}
+		////week
+		week(inputStr) {
+			let returnStr = inputStr;
 			return returnStr;
 		}
 		////SW2.0 function 開始
