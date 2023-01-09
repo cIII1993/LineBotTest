@@ -566,7 +566,7 @@ class Bot {
 		////week
 		week(inputStr) {
 			let returnStr = '基本骰組：';
-			let num = inputStr.split('\');
+			let num = inputStr.split('\\');
 			//let d = new Date(num[0], num[1]-1, num[2]);
 			//returnStr += d;
 			return returnStr;
