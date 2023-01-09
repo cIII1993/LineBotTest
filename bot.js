@@ -299,7 +299,7 @@ class Bot {
 					return this.choiceN(inputStr);
 				}
 				//基本骰組 week
-				if (trigger.match(/^\d+\\\d\d?\\\d\d?$/) != null) {
+				if (trigger.match(/^\d+\.\d\d?\.\d\d?$/) != null) {
 					return this.week(trigger);
 				}
 				///基本運算
@@ -565,10 +565,11 @@ class Bot {
 		}
 		////week
 		week(inputStr) {
-			let returnStr = '基本骰組：';
-			let num = inputStr.split('\\');
+			let returnStr = '日期運算：';
+			let num = inputStr.split('.');
 			let d = new Date(num[0], num[1]-1, num[2]);
-			returnStr += d;
+			let day = ['日', '一', '二', '三', '四', '五', '六'];
+			returnStr += d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日' + '（' + day[d.getDay()] + '）';
 			return returnStr;
 		}
 		////SW2.0 function 開始
