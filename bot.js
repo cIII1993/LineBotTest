@@ -1593,7 +1593,7 @@ class Bot {
 			return returnStr;
 		}
 		ddrNext(inputArray){
-			let returnStr = '\nddra';
+			let returnStr = '\nNext：ddra';
 			for(let i = 0; i < inputArray.length; i ++)
 				returnStr += inputArray[i];
 			return returnStr;
