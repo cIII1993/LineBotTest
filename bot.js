@@ -1568,7 +1568,7 @@ class Bot {
 			for(let i = 0; i < inputArray.length; i ++){
 				if(inputArray[i] % 2 == 0)
 					success ++;
-				runCount[inputArray[i]] ++;
+				runCount[inputArray[i] - 1] ++;
 			}
 			for(let i = 0; i < 6; i ++){
 				if(runCount[i] >= 3){
