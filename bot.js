@@ -145,7 +145,7 @@ class Bot {
 				let trigger = mainMsg[0].toString().toLowerCase();
 				//let trigger2 = mainMsg[1].toString().toLowerCase(); 
 				//help
-				if (trigger.match(new RegExp(`^(sw|sg|dryh|toy|wq|qy|${this.helpList.map(h => h.reg.toLowerCase()).join("|")})?(help|幫助)$`, "g")) != null) {
+				if (trigger.match(new RegExp(`^(sw|sg|dryh|toy|wq|qy|ddr|${this.helpList.map(h => h.reg.toLowerCase()).join("|")})?(help|幫助)$`, "g")) != null) {
 					return this.help(trigger);
 				}
 				if (trigger.match(/^ver$/) != null) {
@@ -2700,6 +2700,14 @@ class Bot {
 				returnStr += '- 可在後面接上春（SP）、夏（SM）、秋（AT）、冬（WT）\n';
 				returnStr += '- 結果最後會告知次回抽牌指令\n';
 				returnStr += '- Ex：QYSP\n';
+			} else if (inputStr.match(/ddr/) != null) {
+				returnStr += '======================\n';
+				returnStr += 'Dude Run 骰組\n';
+				returnStr += '======================\n';
+				returnStr += '行為判定骰 DDRn\n';
+				returnStr += '- n為骰子數量\n';
+				returnStr += '- 結果最後會告知次回擲骰指令\n';
+				returnStr += '- Ex：DDR5\n';
 			} else {
 				for (let h of this.helpList) {
 					if (inputStr.match(new RegExp(`${h.reg.toLowerCase()}`, "g")) != null) {
@@ -2756,6 +2764,8 @@ class Bot {
 				returnStr += '小魔女骰組|詳見 wqHelp\n';
 				returnStr += '======================\n';
 				returnStr += '平靜之年骰組|詳見 qyHelp\n';
+				returnStr += '======================\n';
+				returnStr += 'Dude Run 骰組|詳見 ddrHelp\n';
 				returnStr += '======================\n';
 				returnStr += '其他玩具|詳見 toyHelp\n';
 				returnStr += '======================\n';
