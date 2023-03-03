@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.9 duderunβ';
+		this.version = '2.9 duderun';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
