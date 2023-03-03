@@ -265,7 +265,14 @@ class Bot {
 				//dnd骰
 				if (trigger.match(/^dndbuild$/) != null) {
 					return this.dndBuild();
+				}
+				//duderun骰
+				if (trigger.match(/^ddr\d+/) != null) {
+					return this.ddr(trigger);
 				}				
+				if (trigger.match(/^ddra\d+/) != null) {
+					return this.ddrAdd(trigger);
+				}
 				//em骰
 				if (trigger.match(/^\d*em\d+$/) != null) {
 					return this.em(trigger);
@@ -1538,6 +1545,52 @@ class Bot {
 			return returnStr;
 		}
 		////dnd骰結束
+		////duderun骰開始
+		ddr(inputStr){
+			let num = inputStr.match(/\d+/)[0].toString();
+			let dice = new Array();
+			for(let i = 0; i < num; i ++){
+				dice.push(Math.ceil(Math.random() * 6));
+			}
+			return this.ddrClac(dice);
+		}
+		ddrAdd(inputStr){
+			let dice = inputStr.match(/\d/);
+			dice.push(Math.ceil(Math.random() * 6));
+			return this.ddrClac(dice);
+		}
+		ddrClac(inputArray){
+			let returnStr = 'Dude Run 骰組：';
+			let runCount = [0, 0, 0, 0, 0, 0];
+			let run = false;
+			let success = 0;
+			inputArray.sort();
+			for(let i = 0; i < inputArray.length; i ++){
+				if(inputArray[i] % 2 == 0)
+					success ++;
+				runCount[inputArray[i]] ++;
+			}
+			for(let i = 0; i < 6; i ++){
+				if(runCount[i] >= 3){
+					run = true;
+					break;
+				}
+			}
+			for(let i = 0; i < inputArray.length; i ++){
+				returnStr += ' ' + inputArray[i];
+				if(i != inputArray.length-1)
+					returnStr += ',';
+			}
+			returnStr += '\n';
+			if(run){
+				returnStr += 'DUDE!RUN!!!!!';
+			}
+			else{
+				returnStr += '成功：' + success;
+			}			
+			return returnStr;
+		}
+		////duderun骰結束
 		////cook骰開始
 		cook(inputStr){
 			let returnStr = '料理擲骰：';
