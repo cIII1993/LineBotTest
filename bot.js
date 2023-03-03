@@ -1576,17 +1576,18 @@ class Bot {
 					break;
 				}
 			}
+			returnStr += '[';
 			for(let i = 0; i < inputArray.length; i ++){
 				returnStr += ' ' + inputArray[i];
 				if(i != inputArray.length-1)
 					returnStr += ',';
 			}
-			returnStr += '\n';
+			returnStr += ' ]\n';
 			if(run){
-				returnStr += 'DUDE!RUN!!!!!';
+				returnStr += 'DUDE！RUN！！！！！';
 			}
 			else{
-				returnStr += '成功：' + success;
+				returnStr += '→成功：' + success;
 			}			
 			return returnStr;
 		}
