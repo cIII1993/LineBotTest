@@ -1555,7 +1555,7 @@ class Bot {
 			return this.ddrClac(dice);
 		}
 		ddrAdd(inputStr){
-			let dice = inputStr.match(/\d/);
+			let dice = inputStr.match(/\d/g);
 			dice.push(Math.ceil(Math.random() * 6));
 			return this.ddrClac(dice);
 		}
@@ -1588,7 +1588,14 @@ class Bot {
 			}
 			else{
 				returnStr += '→成功：' + success;
+				returnStr += this.ddrNext(inputArray);
 			}			
+			return returnStr;
+		}
+		ddrNext(inputArray){
+			let returnStr = '\nddra';
+			for(let i = 0; i < inputArray.length; i ++)
+				returnStr += inputArray[i];
 			return returnStr;
 		}
 		////duderun骰結束
