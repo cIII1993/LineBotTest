@@ -1586,10 +1586,8 @@ class Bot {
 			if(run){
 				returnStr += 'DUDE！RUN！！！！！';
 			}
-			else{
-				returnStr += '→成功：' + success;
-				returnStr += this.ddrNext(inputArray);
-			}			
+			returnStr += '→成功：' + success;
+			returnStr += this.ddrNext(inputArray);
 			return returnStr;
 		}
 		ddrNext(inputArray){
