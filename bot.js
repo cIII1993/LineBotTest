@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.9 duderun';
+		this.version = '2.10 nBn';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -519,16 +519,13 @@ class Bot {
 				for (let i = 0; i < num[0]; i++) {
 					let dice = Math.ceil(Math.random() * num[1]);
 					if (i > 0) returnStr += ', ';
-					returnStr += dice.toString();
 					if (adding != null) dice += adding;
+					returnStr += dice.toString();
 					if (compare != null) {
 						successCount += eval(dice + compare);
 					}
 				}
 				returnStr += ']';
-			}
-			if (adding != null) {
-				returnStr += adding;
 			}
 			if (compare != null) {
 				returnStr += compare;
