@@ -519,7 +519,7 @@ class Bot {
 				for (let i = 0; i < num[0]; i++) {
 					let dice = Math.ceil(Math.random() * num[1]);
 					if (i > 0) returnStr += ', ';
-					if (adding != null) dice += adding;
+					if (adding != null) dice = eval(dice + adding);
 					returnStr += dice.toString();
 					if (compare != null) {
 						successCount += eval(dice + compare);
