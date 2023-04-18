@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.10 nBn';
+		this.version = '2.11 dndbo';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -265,6 +265,10 @@ class Bot {
 				//dnd骰
 				if (trigger.match(/^dndbuild$/) != null) {
 					return this.dndBuild();
+				}				
+				//dndbo骰
+				if (trigger.match(/^dndbo$/) != null) {
+					return this.dndBo$();
 				}
 				//duderun骰
 				if (trigger.match(/^ddr\d+/) != null) {
@@ -1538,6 +1542,26 @@ class Bot {
 				dice.sort();
 				returnStr += "[" +dice[3] + ", " + dice[2] + ", " + dice[1] + ", " + dice[0]  + "]→";
 				returnStr += dice[3] + dice[2] + dice[1];
+			}
+			return returnStr;
+		}
+		dndBo(){
+			let returnStr = 'DnD燃盡：\n';
+			let dice = Math.random() * 100;
+			if(dice <= 5){
+				returnStr += '抽空：失去（法術等級）的生命骰。';
+			}
+			else if(dice <= 15){
+				returnStr += '減少：失去（法術等級/ 2）的生命骰。';
+			}
+			else if(dice <= 40){
+				returnStr += '震驚：失去（法術等級x 4）的生命值。';
+			}
+			else if(dice <= 88){
+				returnStr += '傷害：失去（法術等級x 2）的生命骰。';
+			}
+			else if(dice <= 93){
+				returnStr += '意識喪失：獲得（法術等級）回合的施法劣勢。';
 			}
 			return returnStr;
 		}
