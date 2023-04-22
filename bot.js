@@ -1546,7 +1546,7 @@ class Bot {
 			return returnStr;
 		}
 		dndBo(){
-			let returnStr = 'DnD燃盡：\n';
+			let returnStr = 'DnD燃盡骰：\n';
 			let dice = Math.random() * 100;
 			if(dice <= 5){
 				returnStr += '抽空：失去（法術等級）的生命骰。';
