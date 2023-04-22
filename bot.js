@@ -268,7 +268,7 @@ class Bot {
 				}				
 				//dndbo骰
 				if (trigger.match(/^dndbo$/) != null) {
-					return this.dndBo$();
+					return this.dndBo();
 				}
 				//duderun骰
 				if (trigger.match(/^ddr\d+/) != null) {
@@ -1557,11 +1557,35 @@ class Bot {
 			else if(dice <= 40){
 				returnStr += '震驚：失去（法術等級x 4）的生命值。';
 			}
-			else if(dice <= 88){
+			else if(dice <= 65){
 				returnStr += '傷害：失去（法術等級x 2）的生命骰。';
+			}
+			else if(dice <= 92){
+				returnStr += '失控：造成一個刻痕在隨機物品上。';
 			}
 			else if(dice <= 93){
 				returnStr += '意識喪失：獲得（法術等級）回合的施法劣勢。';
+			}
+			else if(dice <= 94){
+				returnStr += '獻祭：失去一個最高法術環位。';
+			}
+			else if(dice <= 95){
+				returnStr += '贈禮：重新恢復此法術的法術位。';
+			}
+			else if(dice <= 96){
+				returnStr += '更新：恢復（法術等級）生命骰。';
+			}
+			else if(dice <= 97){
+				returnStr += '治療：獲得（法術等級x 4）生命值。';
+			}
+			else if(dice <= 98){
+				returnStr += '保護：獲得（法術等級x 4）臨時生命值。';
+			}
+			else if(dice <= 99){
+				returnStr += '精力充沛：獲得（法術等級）回合的施法優勢。';
+			}
+			else if(dice <= 100){
+				returnStr += '恢復：恢復一個最高法術環位。';
 			}
 			return returnStr;
 		}
