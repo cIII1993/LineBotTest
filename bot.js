@@ -2824,6 +2824,10 @@ class Bot {
 				returnStr += '基本骰|nBn+n>n\n';
 				returnStr += '- 同nDn骰法\n';
 				returnStr += '\n';
+				returnStr += '基本骰|nSn+n>n\n';
+				returnStr += '- 直接輸入nS則為nS20\n';
+				returnStr += '- 同nDn骰法\n';
+				returnStr += '\n';
 				returnStr += 'd66骰|d66\n';
 				returnStr += '- 隨機選取|choice a b c d\n';
 				returnStr += '\n';
