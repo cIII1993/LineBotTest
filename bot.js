@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.12 ntn';
+		this.version = '2.12 nSn';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -297,6 +297,10 @@ class Bot {
 				if (trigger.match(/^(\d+b\d+|\d+b|b\d+)((\+|-)\d+)?((>=|<=|=|>|<)\d+)?$/) != null) {
 					return this.xBx(trigger);
 				}
+				//基本骰組 this.xSx+a>b
+				if (trigger.match(/^(\d+s\d+|\d+s|s\d+)((\+|-)\d+)?((>=|<=|=|>|<)\d+)?$/) != null) {
+					return this.xSx(trigger);
+				}
 				//基本骰組 this.d66
 				if (trigger.match(/^d66$/) != null) {
 					return this.d66();
@@ -541,15 +545,26 @@ class Bot {
 		}
 
 		xSx(inputStr){
+			if(inputStr.match(/\d+s/) == null)	inputStr = '1' + inputStr;
+			if(inputStr.match(/s\d+/) == null)	inputStr = inputStr.replace("s", "s6");
 			let returnStr = '基本擲骰：[\n';
-			let num = inputStr.match(/^\d+/)[0].toString();			
 			let adding = 0;
 			if (inputStr.match(/((\+|-)\d)+/) != null) {
 				adding = eval(inputStr.match(/((\+|-)\d)+/)[0].toString());
 			}
+			let compare = null;
+			let successCount = 0;
+			if (inputStr.match(/(>=|<=|=|>|<)\d+/) != null) {
+				compare = inputStr.match(/(>=|<=|=|>|<)\d+/)[0].toString();
+			}
+			let num = inputStr.match(/^\d+/)[0].toString();
 			let dice = new Array();
+			let diceNum = inputStr.match(/s\d+/)[0].toString();
 			for(let i = 0; i < num; i ++){
 				dice.push(Math.ceil(Math.random() * 6) + adding);
+				if (compare != null) {
+					successCount += eval(dice[i] + compare);
+				}
 			}
 			dice.sort();
 			returnStr += '[';
@@ -558,7 +573,13 @@ class Bot {
 				if(i != dice.length-1)
 					returnStr += ',';
 			}
-			returnStr += ' ]\n';
+			returnStr += ' ]';
+			if (compare != null) {
+				returnStr += compare;
+				returnStr += ' → ';
+				returnStr += successCount;
+				returnStr += '成功';
+			}
 		}
 		////this.d66骰
 		d66() {
