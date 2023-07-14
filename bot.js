@@ -2821,10 +2821,10 @@ class Bot {
 				returnStr += '- 大小判斷支援[ > , < , >= , <= , = ]五種\n';
 				returnStr += '- Ex：2D, 2D6, 3D4-1>=3\n';
 				returnStr += '\n';
-				returnStr += '基本骰|nBn+n>n\n';
+				returnStr += '基本骰|nBn+n>n\n(個別計算不加總)';
 				returnStr += '- 同nDn骰法\n';
 				returnStr += '\n';
-				returnStr += '基本骰|nSn+n>n\n';
+				returnStr += '基本骰|nSn+n>n\n(個別計算不加總並排序)';
 				returnStr += '- 直接輸入nS則為nS20\n';
 				returnStr += '- 同nDn骰法\n';
 				returnStr += '\n';
