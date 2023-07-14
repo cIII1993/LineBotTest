@@ -549,8 +549,8 @@ class Bot {
 			if(inputStr.match(/s\d+/) == null)	inputStr = inputStr.replace("s", "s20");
 			let returnStr = '基本擲骰：';
 			let adding = 0;
-			if (inputStr.match(/((\+|-)\d)+/) != null) {
-				adding = eval(inputStr.match(/((\+|-)\d)+/)[0].toString());
+			if (inputStr.match(/((\+|-)\d+)+/) != null) {
+				adding = eval(inputStr.match(/((\+|-)\d+)+/)[0].toString());
 			}
 			let compare = null;
 			let successCount = 0;
