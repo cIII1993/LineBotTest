@@ -546,8 +546,8 @@ class Bot {
 
 		xSx(inputStr){
 			if(inputStr.match(/\d+s/) == null)	inputStr = '1' + inputStr;
-			if(inputStr.match(/s\d+/) == null)	inputStr = inputStr.replace("s", "s6");
-			let returnStr = '基本擲骰：[\n';
+			if(inputStr.match(/s\d+/) == null)	inputStr = inputStr.replace("s", "s20");
+			let returnStr = '基本擲骰：';
 			let adding = 0;
 			if (inputStr.match(/((\+|-)\d)+/) != null) {
 				adding = eval(inputStr.match(/((\+|-)\d)+/)[0].toString());
@@ -559,14 +559,17 @@ class Bot {
 			}
 			let num = inputStr.match(/^\d+/)[0].toString();
 			let dice = new Array();
-			let diceNum = inputStr.match(/s\d+/)[0].toString();
+			let diceNum = inputStr.match(/s\d+/)[0];
+			diceNum = diceNum.match(/\d+/)[0];
 			for(let i = 0; i < num; i ++){
-				dice.push(Math.ceil(Math.random() * 6) + adding);
+				dice.push(Math.ceil(Math.random() * diceNum) + adding);
 				if (compare != null) {
 					successCount += eval(dice[i] + compare);
 				}
 			}
-			dice.sort();
+			dice.sort(function(a, b) {
+		              return a - b;
+		        });
 			returnStr += '[';
 			for(let i = 0; i < dice.length; i ++){
 				returnStr += ' ' + dice[i];
@@ -580,6 +583,7 @@ class Bot {
 				returnStr += successCount;
 				returnStr += '成功';
 			}
+			return returnStr;
 		}
 		////this.d66骰
 		d66() {
