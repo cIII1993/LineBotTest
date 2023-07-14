@@ -298,7 +298,7 @@ class Bot {
 					return this.xBx(trigger);
 				}
 				//基本骰組 this.xSx+a>b
-				if (trigger.match(/^(\d+s\d+|\d+s|s\d+)((\+|-)\d+)?((>=|<=|=|>|<)\d+)?$/) != null) {
+				if (trigger.match(/^(\d+s\d+|\d+s|s\d+)((\+|-)\d+)*((>=|<=|=|>|<)\d+)?$/) != null) {
 					return this.xSx(trigger);
 				}
 				//基本骰組 this.d66
