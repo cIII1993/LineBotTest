@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.11 dndbo';
+		this.version = '2.12 ntn';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -538,6 +538,27 @@ class Bot {
 				returnStr += '成功';
 			}
 			return returnStr;
+		}
+
+		xSx(inputStr){
+			let returnStr = '基本擲骰：[\n';
+			let num = inputStr.match(/^\d+/)[0].toString();			
+			let adding = 0;
+			if (inputStr.match(/((\+|-)\d)+/) != null) {
+				adding = eval(inputStr.match(/((\+|-)\d)+/)[0].toString());
+			}
+			let dice = new Array();
+			for(let i = 0; i < num; i ++){
+				dice.push(Math.ceil(Math.random() * 6) + adding);
+			}
+			dice.sort();
+			returnStr += '[';
+			for(let i = 0; i < dice.length; i ++){
+				returnStr += ' ' + dice[i];
+				if(i != dice.length-1)
+					returnStr += ',';
+			}
+			returnStr += ' ]\n';
 		}
 		////this.d66骰
 		d66() {
@@ -2796,6 +2817,9 @@ class Bot {
 				returnStr += '======================\n';
 				returnStr += 'dndBuild\n';
 				returnStr += '- 創造dnd角色\n';
+				returnStr += 'dndBO\n';
+				returnStr += '- 燃盡(房規)\n';
+				returnStr += '\n';
 				returnStr += '\n';
 				returnStr += '======================\n';
 				returnStr += 'SW2.0骰組|詳見 swHelp\n';
