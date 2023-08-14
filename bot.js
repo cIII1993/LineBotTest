@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.12 nSn';
+		this.version = '2.13 cc';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -1153,10 +1153,12 @@ class Bot {
 			else if (dice1[0] <= target) returnStr += '→一般成功';
 			else returnStr += '→失敗';
 
+			/*
 			if (dice1[0] >= 96) {
 				if (Math.floor(target / 2) < 50) returnStr += '（困難大失敗）';
 				else if (Math.floor(target / 5) < 50) returnStr += '（極限大失敗）';
 			}
+   			*/
 			return returnStr;
 		}
 		////CoC7 function 結束
