@@ -219,7 +219,7 @@ class Bot {
 					return this.sgBt();
 				}
 				//CoC7基本骰組
-				if (trigger.match(/^cc<=\d+(\(-?\d+\))?$/) != null) {
+				if (trigger.match(/^cc(<=)?\d+(\(-?\d+\))?$/) != null) {
 					return this.cc(trigger);
 				}
 				//CoC7成長
@@ -1127,7 +1127,7 @@ class Bot {
 		//////CoC基本判定
 		cc(inputStr) {
 			let returnStr = 'CoC7th擲骰：';
-			let tempMatch = inputStr.match(/<=\d+/).toString();
+			let tempMatch = inputStr.match(/c(<=)?\d+/).toString();
 			let target = Number(tempMatch.match(/\d+/));
 			let credit = 0;
 			if (inputStr.match(/\(-?\d+\)/) != null) {
