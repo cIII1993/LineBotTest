@@ -1174,7 +1174,7 @@ class Bot {
 			returnStr += dice.toString() + '→';
 			if(dice > target){
 				let grow = Math.floor(Math.random() * 10);
-				returnStr += '成長' + target.toString() + '+' + grow.toString() + '→' + target.toString() + grow.toString();
+				returnStr += '成長' + target.toString() + '+' + grow.toString() + '→' + (target + grow).toString();
 			}
 			else{
 				returnStr += '失敗';
