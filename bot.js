@@ -222,6 +222,10 @@ class Bot {
 				if (trigger.match(/^cc<=\d+(\(-?\d+\))?$/) != null) {
 					return this.cc(trigger);
 				}
+				//CoC7成長
+				if (trigger.match(/^cc>\d+$/) != null) {
+					return this.ccgrow(trigger);
+				}
 				//死亡flag flag表
 				if (trigger.match(/^df$/) != null) {
 					return this.df();
@@ -1159,6 +1163,22 @@ class Bot {
 				else if (Math.floor(target / 5) < 50) returnStr += '（極限大失敗）';
 			}
    			*/
+			return returnStr;
+		}
+		//////CoC成長判定
+		ccgrow(inputStr) {
+			let returnStr = 'CoC7th擲骰：';
+			let tempMatch = inputStr.match(/>=\d+/).toString();
+			let target = Number(tempMatch.match(/\d+/));
+			let dice = Math.floor(Math.random() * 100);
+			returnStr += dice.toString() + '→';
+			if(dice > target){
+				returnStr += '成長';
+				returnStr += target + Math.floor(Math.random() * 10);
+			}
+			else{
+				returnStr += '失敗';
+			}
 			return returnStr;
 		}
 		////CoC7 function 結束
