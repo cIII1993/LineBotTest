@@ -1168,7 +1168,7 @@ class Bot {
 		//////CoC成長判定
 		ccgrow(inputStr) {
 			let returnStr = 'CoC7th擲骰：';
-			let tempMatch = inputStr.match(/>=\d+/).toString();
+			let tempMatch = inputStr.match(/>\d+/).toString();
 			let target = Number(tempMatch.match(/\d+/));
 			let dice = Math.floor(Math.random() * 100);
 			returnStr += dice.toString() + '→';
