@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.14.0 CoD';
+		this.version = '2.14.1 CoD';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -1718,7 +1718,7 @@ class Bot {
 		CoD(inputStr){
 			let returnStr = 'CoD擲骰：';
 			let num = eval(inputStr.match(/[\+-\d]+/)[0]);
-			if(num > 0){
+			if(num <= 0){
 				let dice = Math.ceil(Math.random() * 10);
 				returnStr += '機會骰[' + dice.toString() + '] → ';
 				if(dice == 10){
