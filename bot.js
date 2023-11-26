@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.14 CoD';
+		this.version = '2.14.0 CoD';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -280,6 +280,10 @@ class Bot {
 				}				
 				if (trigger.match(/^ddra\d+/) != null) {
 					return this.ddrAdd(trigger);
+				}
+				//CoD骰
+				if (trigger.match(/^cod([\+-]\d+)+/) != null) {
+					return this.CoD(trigger);
 				}
 				//em骰
 				if (trigger.match(/^\d*em\d+$/) != null) {
@@ -1710,6 +1714,43 @@ class Bot {
 			return returnStr;
 		}
 		////duderun骰結束
+		////CoD骰開始
+		CoD(inputStr){
+			let returnStr = 'CoD擲骰：';
+			let num = eval(inputStr.match(/[\+-\d]+/)[0]);
+			if(num > 0){
+				let dice = Math.ceil(Math.random() * 10);
+				returnStr += '機會骰[' + dice.toString() + '] → ';
+				if(dice == 10){
+					returnStr += '成功';
+				}
+				else if(dice == 0){
+					returnStr += '戲劇失敗';
+				}
+				else{
+					returnStr += '失敗';
+				}
+			}
+			else{
+				returnStr += '[';
+				let success = 0;
+				while(num > 0){
+					let dice = Math.ceil(Math.random() * 10);
+					if(dice >= 8)	success++;
+					if(dice == 10) num++;
+					num--;
+					returnStr += dice.toString();
+					if(num > 0) returnStr += ', ';
+				}
+				returnStr += '] → ';
+				returnStr += success.toString() + '成功 → ';
+				if(success >= 5)	returnStr += '格外成功';
+				else if(success <= 0)	returnStr += '失敗';
+				else	returnStr += '一般成功';
+			}
+			return returnStr;
+		}
+		////CoD骰結束
 		////cook骰開始
 		cook(inputStr){
 			let returnStr = '料理擲骰：';
