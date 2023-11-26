@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.14.3 CoD';
+		this.version = '2.14.4 CoD';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -145,7 +145,7 @@ class Bot {
 				let trigger = mainMsg[0].toString().toLowerCase();
 				//let trigger2 = mainMsg[1].toString().toLowerCase(); 
 				//help
-				if (trigger.match(new RegExp(`^(sw|sg|dryh|toy|wq|qy|ddr|${this.helpList.map(h => h.reg.toLowerCase()).join("|")})?(help|幫助)$`, "g")) != null) {
+				if (trigger.match(new RegExp(`^(sw|sg|dryh|toy|wq|qy|ddr|cod|${this.helpList.map(h => h.reg.toLowerCase()).join("|")})?(help|幫助)$`, "g")) != null) {
 					return this.help(trigger);
 				}
 				if (trigger.match(/^ver$/) != null) {
@@ -2863,6 +2863,13 @@ class Bot {
 				returnStr += '- n為骰子數量\n';
 				returnStr += '- 結果最後會告知次回擲骰指令\n';
 				returnStr += '- Ex：DDR5\n';
+			} else if (inputStr.match(/cod/) != null) {
+				returnStr += '======================\n';
+				returnStr += 'CoD骰組\n';
+				returnStr += '======================\n';
+				returnStr += '基本判定骰 CoD+n\n';
+				returnStr += '- n為骰子數量，可加減\n';
+				returnStr += '- Ex：CoD+1+3\n';
 			} else {
 				for (let h of this.helpList) {
 					if (inputStr.match(new RegExp(`${h.reg.toLowerCase()}`, "g")) != null) {
@@ -2928,6 +2935,8 @@ class Bot {
 				returnStr += '平靜之年骰組|詳見 qyHelp\n';
 				returnStr += '======================\n';
 				returnStr += 'Dude Run 骰組|詳見 ddrHelp\n';
+				returnStr += '======================\n';
+				returnStr += 'CoD骰組|詳見 codHelp\n';
 				returnStr += '======================\n';
 				returnStr += '其他玩具|詳見 toyHelp\n';
 				returnStr += '======================\n';
