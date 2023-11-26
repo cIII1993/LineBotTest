@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.13 cc';
+		this.version = '2.14 CoD';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
