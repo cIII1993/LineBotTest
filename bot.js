@@ -454,8 +454,7 @@ class Bot {
 				let tempMatch = inputStr.match(/\d+d\d+/).toString();
 				let a = tempMatch.match(/\d+/g);
 				for (let i = 0; i < a[0]; i++) {
-					//let dice = Math.ceil(Math.random() * a[1]);
-					let dice = a[1];
+					let dice = Math.ceil(Math.random() * a[1]);
 					answer += dice;
 					if (i > 0) returnStr += ',';
 					returnStr += dice.toString();
