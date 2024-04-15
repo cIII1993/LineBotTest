@@ -1778,14 +1778,14 @@ class Bot {
 					return returnStr + '雙倍強成功';
 				if(dice >= 33)
 					return returnStr + '強成功';
-				return returnSrt + '成功';
+				return returnStr + '成功';
 			}
 			else{
 				if(dice <= 33)
 					return returnStr + '雙倍強失敗';
 				if(dice <= 66)
 					return returnStr + '強失敗';
-				return returnSrt + '失敗';
+				return returnStr + '失敗';
 			}
 		}
 		////eclipse phase骰結束
