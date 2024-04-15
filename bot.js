@@ -285,6 +285,10 @@ class Bot {
 				if (trigger.match(/^cod([\+-]\d+)+/) != null) {
 					return this.CoD(trigger);
 				}
+				//eclipse phase骰
+				if (trigger.match(/^ep[\d\+\-\*\/%\(\)\.d]+/) != null) {
+					return this.ep(trigger);
+				}
 				//em骰
 				if (trigger.match(/^\d*em\d+$/) != null) {
 					return this.em(trigger);
@@ -1754,6 +1758,37 @@ class Bot {
 			return returnStr;
 		}
 		////CoD骰結束
+		////eclipse phase骰開始
+		ep(inputStr){
+			let num = eval(inputStr.replace('ep', ''));
+			let dice = Math.floor(Math.random() * 100);
+			let returnStr = '隱蝕期擲骰：[' + dice + '] → ';
+			if(dice == 99)
+				return returnStr + '★大失敗★';	
+			else if(dice == 0)
+				return returnStr + '☆大成功☆';		
+			else if(dice % 11 == 0){
+				if(dice <= num)
+					return returnStr + '☆大成功☆';
+				else
+					return returnStr + '★大失敗★';
+			}
+			if(dice <= num){
+				if(dice >= 66)
+					return returnStr + '雙倍強成功';
+				if(dice >= 33)
+					return returnStr + '強成功';
+				return returnSrt + '成功';
+			}
+			else{
+				if(dice <= 33)
+					return returnStr + '雙倍強失敗';
+				if(dice <= 66)
+					return returnStr + '強失敗';
+				return returnSrt + '失敗';
+			}
+		}
+		////eclipse phase骰結束
 		////cook骰開始
 		cook(inputStr){
 			let returnStr = '料理擲骰：';
