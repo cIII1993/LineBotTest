@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.16 ep';
+		this.version = '2.17 ncβ';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -288,6 +288,10 @@ class Bot {
 				//eclipse phase骰
 				if (trigger.match(/^ep[\d\+\-\*\/%\(\)\.d]+/) != null) {
 					return this.ep(trigger);
+				}
+				//ネクロニカ骰
+				if (trigger.match(/^[\d\+\-\*\/%\(\)\.d]+nc[\d\+\-\*\/%\(\)\.d]*/) != null) {
+					return this.nc(trigger);
 				}
 				//em骰
 				if (trigger.match(/^\d*em\d+$/) != null) {
@@ -1789,6 +1793,36 @@ class Bot {
 			}
 		}
 		////eclipse phase骰結束
+		////NC骰開始
+		nc(inputStr){
+			let diceNum = eval(inputStr.match('\S+nc')[0].replace('nc', ''));
+			let addNum = eval(inputStr.match('nc\S+')[0].replace('nc', ''));
+			let successBool = false;
+			let bigSuccessBool = false;
+			let bigFailBool = false;
+			let dice = new Array();
+			let returnStr = 'ネクロニカ擲骰：[';
+			for(let i = 0; i < diceNum; i++){
+				dice[i] = Math.ceil(Math.random() * 10) + addNum;
+				if(dice[i] >= 10) successBool = true;
+				if(dice[i] >= 6) successBool = true;
+				if(dice[i] <= 1) bigFailBool = true;
+				
+			}
+			dice.sort()
+			for(let i = 0; i < dice.length; i++){
+				returnStr += dice[i];
+				if(i != dice_num - 1)
+					returnStr += ', ';
+			}
+			returnStr += '] → '
+			if(bigSuccessBool) returnStr += '★+' + dice[0] + '大成功★';
+			else if(successBool) returnStr += '成功';
+			else if(bigFailBool) returnStr += '☆大失敗☆';
+			else returnStr += '失敗';
+			return returnStr;
+		}
+		////NC骰結束
 		////cook骰開始
 		cook(inputStr){
 			let returnStr = '料理擲骰：';
