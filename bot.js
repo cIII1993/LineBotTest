@@ -145,7 +145,7 @@ class Bot {
 				let trigger = mainMsg[0].toString().toLowerCase();
 				//let trigger2 = mainMsg[1].toString().toLowerCase(); 
 				//help
-				if (trigger.match(new RegExp(`^(sw|sg|dryh|toy|wq|qy|ddr|cod|ep|${this.helpList.map(h => h.reg.toLowerCase()).join("|")})?(help|幫助)$`, "g")) != null) {
+				if (trigger.match(new RegExp(`^(sw|sg|dryh|toy|wq|qy|ddr|cod|ep|nc|${this.helpList.map(h => h.reg.toLowerCase()).join("|")})?(help|幫助)$`, "g")) != null) {
 					return this.help(trigger);
 				}
 				if (trigger.match(/^ver$/) != null) {
@@ -3054,8 +3054,21 @@ class Bot {
 				returnStr += '隱蝕期骰組\n';
 				returnStr += '======================\n';
 				returnStr += '基本判定骰 EPn\n';
-				returnStr += '- n為骰子數量，可加減乘除\n';
+				returnStr += '- n為骰子數量，可加減\n';
 				returnStr += '- Ex：EP1+3\n';
+			} else if (inputStr.match(/nc/) != null) {
+				returnStr += '======================\n';
+				returnStr += 'ネクロニカ骰組\n';
+				returnStr += '======================\n';
+				returnStr += '基本判定骰 aNC+b\n';
+				returnStr += '- a為骰子數量，b為加值，皆可加減\n';
+				returnStr += '- Ex：1NC+3\n';
+				returnStr += '戰鬥骰 NA+n\n';
+				returnStr += '- n為加值，可加減\n';
+				returnStr += '- Ex：NA+3\n';
+				returnStr += '依戀表 NCET\n';
+				returnStr += '敵方依戀表 NCETE\n';
+				returnStr += '中立依戀表 NCETN\n';
 			} else {
 				for (let h of this.helpList) {
 					if (inputStr.match(new RegExp(`${h.reg.toLowerCase()}`, "g")) != null) {
@@ -3125,6 +3138,8 @@ class Bot {
 				returnStr += 'CoD骰組|詳見 codHelp\n';
 				returnStr += '======================\n';
 				returnStr += '隱蝕期骰組|詳見 EPHelp\n';
+				returnStr += '======================\n';
+				returnStr += 'ネクロニカ骰組|詳見 NCHelp\n';
 				returnStr += '======================\n';
 				returnStr += '其他玩具|詳見 toyHelp\n';
 				returnStr += '======================\n';
