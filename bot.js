@@ -296,13 +296,13 @@ class Bot {
 				if (trigger.match(/^[\+-\d]*na[\+-\d]*/) != null) {
 					return this.na(trigger);
 				}
-				if (trigger.match(/^(ncet)/) != null) {
+				if (trigger.match(/^(ncet)$/) != null) {
 					return this.ncet();
 				}
-				if (trigger.match(/^(ncete)|(ncet敵方)|(ncet敵人)|(ncet敵)/) != null) {
+				if (trigger.match(/^(ncete)|(ncet敵方)|(ncet敵人)|(ncet敵)$/) != null) {
 					return this.ncete(trigger);
 				}
-				if (trigger.match(/^(ncetn)|(ncet中立)/) != null) {
+				if (trigger.match(/^(ncetn)|(ncet中立)$/) != null) {
 					return this.ncetn(trigger);
 				}
 				//em骰
