@@ -2905,6 +2905,13 @@ class Bot {
 				returnStr += '基本判定骰 CoD+n\n';
 				returnStr += '- n為骰子數量，可加減\n';
 				returnStr += '- Ex：CoD+1+3\n';
+			} else if (inputStr.match(/ep/) != null) {
+				returnStr += '======================\n';
+				returnStr += '隱蝕期骰組\n';
+				returnStr += '======================\n';
+				returnStr += '基本判定骰 EPn\n';
+				returnStr += '- n為骰子數量，可加減乘除\n';
+				returnStr += '- Ex：EP1+3\n';
 			} else {
 				for (let h of this.helpList) {
 					if (inputStr.match(new RegExp(`${h.reg.toLowerCase()}`, "g")) != null) {
@@ -2972,6 +2979,8 @@ class Bot {
 				returnStr += 'Dude Run 骰組|詳見 ddrHelp\n';
 				returnStr += '======================\n';
 				returnStr += 'CoD骰組|詳見 codHelp\n';
+				returnStr += '======================\n';
+				returnStr += '隱蝕期骰組|詳見 EPHelp\n';
 				returnStr += '======================\n';
 				returnStr += '其他玩具|詳見 toyHelp\n';
 				returnStr += '======================\n';
