@@ -290,8 +290,11 @@ class Bot {
 					return this.ep(trigger);
 				}
 				//ネクロニカ骰
-				if (trigger.match(/^[\d\+\-\*\/%\(\)\.d]+nc[\d\+\-\*\/%\(\)\.d]*/) != null) {
+				if (trigger.match(/^[\+-\d]+nc[\+-\d]*/) != null) {
 					return this.nc(trigger);
+				}
+				if (trigger.match(/^[\+-\d]*na[\+-\d]*/) != null) {
+					return this.na(trigger);
 				}
 				//em骰
 				if (trigger.match(/^\d*em\d+$/) != null) {
@@ -1793,10 +1796,16 @@ class Bot {
 			}
 		}
 		////eclipse phase骰結束
-		////NC骰開始
+		////ネクロニカ骰開始
 		nc(inputStr){
-			let diceNum = eval(inputStr.match('\S+nc')[0].replace('nc', ''));
-			let addNum = eval(inputStr.match('nc\S+')[0].replace('nc', ''));
+			let diceNum = 1;
+			if(inputStr.match(/[\+-\d]+nc/) != null)
+				diceNum = eval(inputStr.match(/[\+-\d]+nc/)[0].replace('nc', ''));
+			let addNum = 0;
+			if(inputStr.match(/nc[\+-\d]*/) != null)
+				addNum = eval(inputStr.match(/nc[\+-\d]*/)[0].replace('nc', ''));
+			if(isNaN(addNum))
+			    addNum = 0;
 			let successBool = false;
 			let bigSuccessBool = false;
 			let bigFailBool = false;
@@ -1804,25 +1813,78 @@ class Bot {
 			let returnStr = 'ネクロニカ擲骰：[';
 			for(let i = 0; i < diceNum; i++){
 				dice[i] = Math.ceil(Math.random() * 10) + addNum;
-				if(dice[i] >= 10) successBool = true;
+				if(dice[i] > 10) bigSuccessBool = true;
 				if(dice[i] >= 6) successBool = true;
 				if(dice[i] <= 1) bigFailBool = true;
 				
 			}
-			dice.sort()
+			dice.sort(function(a, b){ return b - a})
 			for(let i = 0; i < dice.length; i++){
 				returnStr += dice[i];
-				if(i != dice_num - 1)
+				if(i != diceNum - 1)
 					returnStr += ', ';
 			}
 			returnStr += '] → '
-			if(bigSuccessBool) returnStr += '★+' + dice[0] + '大成功★';
+			if(bigSuccessBool) returnStr += '★+' + (dice[0] - 10) + '大成功★';
 			else if(successBool) returnStr += '成功';
 			else if(bigFailBool) returnStr += '☆大失敗☆';
 			else returnStr += '失敗';
 			return returnStr;
 		}
-		////NC骰結束
+		na(inputStr){
+			let diceNum = 1;
+			if(inputStr.match(/[\+-\d]+nc/) != null)
+				diceNum = eval(inputStr.match(/[\+-\d]+nc/)[0].replace('nc', ''));
+			let addNum = 0;
+			if(inputStr.match(/nc[\+-\d]*/) != null)
+				addNum = eval(inputStr.match(/nc[\+-\d]*/)[0].replace('nc', ''));
+			if(isNaN(addNum))
+			    addNum = 0;
+			let successBool = false;
+			let bigSuccessBool = false;
+			let bigFailBool = false;
+			let dice = new Array();
+			let returnStr = 'ネクロニカ擲骰：[';
+			for(let i = 0; i < diceNum; i++){
+				dice[i] = Math.ceil(Math.random() * 10) + addNum;
+				if(dice[i] > 10) bigSuccessBool = true;
+				if(dice[i] >= 6) successBool = true;
+				if(dice[i] <= 1) bigFailBool = true;
+				
+			}
+			dice.sort(function(a, b){ return b - a})
+			for(let i = 0; i < dice.length; i++){
+				returnStr += dice[i];
+				if(i != diceNum - 1)
+					returnStr += ', ';
+			}
+			returnStr += '] → '
+			if(bigSuccessBool) returnStr += '★+' + (dice[0] - 10) + '大成功★ → 攻擊方選擇';
+			else if(successBool){
+				returnStr += '成功';
+				switch(dice[0]){
+					case 6:
+						returnStr += ' → 防禦方選擇';
+						break;
+					case 7:
+						returnStr += ' → 足部';
+						break;
+					case 8:
+						returnStr += ' → 胴體';
+						break;
+					case 9:
+						returnStr += ' → 手部';
+						break;
+					case 10:
+						returnStr += ' → 頭部';
+						break;
+				}
+			}
+			else if(bigFailBool) returnStr += '☆大失敗☆';
+			else returnStr += '失敗';
+			return returnStr;
+		}
+		////ネクロニカ骰結束
 		////cook骰開始
 		cook(inputStr){
 			let returnStr = '料理擲骰：';
