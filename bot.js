@@ -1834,10 +1834,10 @@ class Bot {
 		na(inputStr){
 			let diceNum = 1;
 			if(inputStr.match(/[\+-\d]+na/) != null)
-				diceNum = eval(inputStr.match(/[\+-\d]+nc/)[0].replace('nc', ''));
+				diceNum = eval(inputStr.match(/[\+-\d]+na/)[0].replace('nc', ''));
 			let addNum = 0;
 			if(inputStr.match(/na[\+-\d]*/) != null)
-				addNum = eval(inputStr.match(/nc[\+-\d]*/)[0].replace('nc', ''));
+				addNum = eval(inputStr.match(/na[\+-\d]*/)[0].replace('nc', ''));
 			if(isNaN(addNum))
 			    addNum = 0;
 			let successBool = false;
