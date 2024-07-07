@@ -1630,7 +1630,6 @@ class Bot {
 		}
 		////em骰結束
 		////sr骰開始
-		////sr骰結束
 		sr(inputStr){
 			let returnStr = '暗影狂奔擲骰：';
 			let num = eval(inputStr.replace('sr', ''));
@@ -1647,7 +1646,7 @@ class Bot {
 				}
 			}
 			dice.sort(function(a, b) {
-				return a - b;
+				return b - a;
 			});
 			returnStr += '[';
 			for(let i = 0; i < dice.length; i ++){
@@ -1671,6 +1670,7 @@ class Bot {
 			}
 			return returnStr;
 		}
+		////sr骰結束
 		////dnd骰開始
 		dndBuild(){
 			let returnStr = 'DnD創角（4d6取3）：';
