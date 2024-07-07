@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.17 nc';
+		this.version = '2.18 sr';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -308,6 +308,10 @@ class Bot {
 				//em骰
 				if (trigger.match(/^\d*em\d+$/) != null) {
 					return this.em(trigger);
+				}
+				//sr骰
+				if (trigger.match(/^[\d\+\-\*\/%\(\)\.d]+sr$/) != null) {
+					return this.sr(trigger);
 				}
 				//cookJudge骰
 				if (inputStr.match(/^ck (\S+ )+/i) != null) {
@@ -1625,6 +1629,48 @@ class Bot {
 			return returnStr;
 		}
 		////em骰結束
+		////sr骰開始
+		////sr骰結束
+		sr(inputStr){
+			let returnStr = '暗影狂奔擲骰：';
+			let num = eval(inputStr.replace('sr', ''));
+			let successCount = 0;
+			let failureCount = 0;
+			let dice = new Array();
+			for(let i = 0; i < num; i ++){
+				dice.push(Math.ceil(Math.random() * 6) );
+				if(dice[i] > 4){
+					successCount++;
+				}
+				if(dice[i] == 1){
+					failureCount++;
+				}
+			}
+			dice.sort(function(a, b) {
+				return a - b;
+			});
+			returnStr += '[';
+			for(let i = 0; i < dice.length; i ++){
+				returnStr += ' ' + dice[i];
+				if(i != dice.length-1)
+					returnStr += ',';
+			}
+			returnStr += ' ]';
+			if(failureCount > num / 2){
+				if(successCount == 0){
+					returnStr += ' → 大失敗';
+				}
+				else{
+					returnStr += ' → 失敗';
+				}
+			}
+			else{
+				returnStr += ' → ';
+				returnStr += successCount;
+				returnStr += '成功';
+			}
+			return returnStr;
+		}
 		////dnd骰開始
 		dndBuild(){
 			let returnStr = 'DnD創角（4d6取3）：';
