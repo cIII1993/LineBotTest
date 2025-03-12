@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.18 sr';
+		this.version = '2.19 投人機β';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -2065,10 +2065,18 @@ class Bot {
 		}
 		//////投人機
 		terbuchet(inputStr) {
+			let spd = pow(10, Math.random() * 6 - 2).toFixed(2);
+			let angle = Math.random() * Math.PI / 2;
+			let h_spd = Math.cos(angle) * spd ;
+			let v_spd = Math.sin(angle) * spd ;
+			let time = v_spd / 9.8 * 2;
+			let dis = h_spd * time;
 			let returnStr = '咻～！';
 			if (inputStr.match(/(活性|界面|^投人機$)/) != null) return undefined;
 			returnStr += inputStr.replace(/投人機$/, '飛了');
-			returnStr += Math.pow(10, Math.random() * 8 - 2).toFixed(2) + '公尺！';
+			//returnStr += Math.pow(10, Math.random() * 8 - 2).toFixed(2) + '公尺！';
+			returnStr += dis.toFixed(2) + '公尺！\n';
+			returnStr += '發射角度為' + (angle / Math.PI * 180).toFixed(0) + '，共飛行了' + time.toFixed(2) '秒';
 			return returnStr;
 		}
 		//////峻巍流言表
