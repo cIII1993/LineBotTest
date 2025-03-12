@@ -2076,8 +2076,8 @@ class Bot {
 			returnStr += inputStr.replace(/投人機$/, '飛了');
 			//returnStr += Math.pow(10, Math.random() * 8 - 2).toFixed(2) + '公尺！';
 			returnStr += dis.toFixed(2) + '公尺！\n';
-			returnStr += '初速度為' + spd + 'm/s，';
-			returnStr += '發射角度為' + (angle / Math.PI * 180).toFixed(0) + '°，'
+			returnStr += '初速度為' + spd.toFixed(2) + 'm/s，';
+			returnStr += '發射角度為' + (angle / Math.PI * 180).toFixed(1) + '°，'
 			returnStr += '共飛行了' + time.toFixed(2) + '秒';
 			return returnStr;
 		}
