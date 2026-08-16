@@ -3021,25 +3021,25 @@ class Bot {
 			if(Math.random() <= 0.3){
 				return '你釣到了：垃圾'
 			}
-			if(Math.random() <= 0.002){
+			if(Math.random() <= 0.005){
 				return '你釣到了：〈雪結晶的髮飾〉'
 			}
-			if(Math.random() <= 0.002){
+			if(Math.random() <= 0.005){
 				return '你釣到了：〈知性之戒指〉'
 			}
-			if(Math.random() <= 0.002){
+			if(Math.random() <= 0.005){
 				return '你釣到了：〈俊足之戒指〉'
 			}
-			if(Math.random() <= 0.002){
+			if(Math.random() <= 0.005){
 				return '你釣到了：〈怪力之腕輪〉'
 			}
-			if(Math.random() <= 0.002){
+			if(Math.random() <= 0.005){
 				return '你釣到了：〈求生外套〉'
 			}
-			if(Math.random() <= 0.002){
+			if(Math.random() <= 0.005){
 				return '你釣到了：〈平均戒指〉'
 			}
-			if(Math.random() <= 0.002){
+			if(Math.random() <= 0.005){
 				return '你釣到了：〈夜間護目鏡〉'
 			}
 			
