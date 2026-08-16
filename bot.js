@@ -3018,6 +3018,12 @@ class Bot {
 		//////釣魚開始
 		fishing(inputStr) {
 			let returnStr = '你釣到了：'
+			if(Math.random() <= 0.3){
+				return '你釣到了：垃圾'
+			}
+			if(Math.random() <= 0.01){
+				return '你釣到了：寶物'
+			}
 			
 		    // 解析輸入指令，允許 @ 或 # 省略，且後方數值支援加減運算（例如 @1+2 或 #-1-1）
 		    const depthMatch = inputStr.match(/@([+\-\d]+)/);
