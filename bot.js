@@ -26,7 +26,7 @@ class Bot {
 		////
 
 
-		this.version = '2.19 投人機β';
+		this.version = '2.20 fishingβ';
 		//表格放置區
 		////sw2.0
 		this.powerSheet = [
@@ -320,6 +320,10 @@ class Bot {
 				//cook骰
 				if (trigger.match(/^ck\d+/) != null) {
 					return this.cook(trigger);
+				}
+				//釣魚骰
+				if (trigger.match(/^fishing[-\+@#\d]*/) != null) {
+					return this.fishing(trigger);
 				}
 				//基本骰組 this.xDx+a>b
 				if (trigger.match(/^(\d+d\d+|\d+d)((\+|-)\d+)?((>=|<=|=|>|<)\d+)?$/) != null) {
@@ -3011,6 +3015,75 @@ class Bot {
 			return returnStr;
 		}
 		//////鑑定結束
+		//////釣魚開始
+		function fishing(inputStr) {
+		    // 解析輸入指令，允許 @ 或 # 省略，且後方數值支援加減運算（例如 @1+2 或 #-1-1）
+		    const depthMatch = inputStr.match(/@([+\-\d]+)/);
+		    const dietMatch = inputStr.match(/#([+\-\d]+)/);
+		
+		    // 計算數值（支援簡單的加減運算字串，透過 eval 安全解析，或使用 Function/簡單解析）
+		    const parseValue = (match) => {
+		        if (!match) return 0;
+		        try {
+		            // 限制只能包含數字、+、-，確保安全性
+		            const sanitized = match[1].replace(/[^+\-\d]/g, '');
+		            return eval(sanitized) || 0;
+		        } catch (e) {
+		            return 0;
+		        }
+		    };
+		
+		    const depth = parseValue(depthMatch);
+		    const diet = parseValue(dietMatch);
+		
+		    // 四類魚陣列設定：格式為 [[魚名, 機率], [魚名, 機率]...]
+		    const fishCategories = {
+		        shallowHerbivore: [["草食淺水魚A", 0.5], ["草食淺水魚B", 0.5]], // 淺水草食
+		        shallowCarnivore: [["肉食淺水魚A", 0.5], ["肉食淺水魚B", 0.5]], // 淺水肉食
+		        deepHerbivore:    [["草食深水魚A", 0.5], ["草食深水魚B", 0.5]], // 深水草食
+		        deepCarnivore:    [["肉食深水魚A", 0.5], ["肉食深水魚B", 0.5]]  // 深水肉食
+		    };
+		
+		    // 根據 depth（正數傾向深水，負數傾向淺水）與 diet（正數傾向肉食，負數傾向草食）計算各類別的權重
+		    let weights = {
+		        shallowHerbivore: (depth <= 0 ? (5 - depth) : 1) * (diet <= 0 ? (5 - diet) : 1),
+		        shallowCarnivore: (depth <= 0 ? (5 - depth) : 1) * (diet > 0 ? (5 + diet) : 1),
+		        deepHerbivore:    (depth > 0 ? (5 + depth) : 1) * (diet <= 0 ? (5 - diet) : 1),
+		        deepCarnivore:    (depth > 0 ? (5 + depth) : 1) * (diet > 0 ? (5 + diet) : 1)
+		    };
+		
+		    // 根據權重隨機挑選魚類分類
+		    const totalWeight = Object.values(weights).reduce((sum, w) => sum + w, 0);
+		    let randomVal = Math.random() * totalWeight;
+		    let selectedCategory = 'shallowHerbivore';
+		
+		    for (const [key, weight] of Object.entries(weights)) {
+		        if (randomVal < weight) {
+		            selectedCategory = key;
+		            break;
+		        }
+		        randomVal -= weight;
+		    }
+		
+		    const fishList = fishCategories[selectedCategory];
+		
+		    // 在選定的分類中，根據機率隨機選擇一條魚
+		    const totalFishProb = fishList.reduce((sum, item) => sum + item[1], 0);
+		    let fishRand = Math.random() * totalFishProb;
+		    let chosenFish = "";
+		
+		    for (const [name, prob] of fishList) {
+		        if (fishRand < prob) {
+		            chosenFish = name;
+		            break;
+		        }
+		        fishRand -= prob;
+		    }
+		
+		    // 回傳指定格式
+		    return `你釣到了\n+${chosenFish}`;
+		}
+		//////釣魚結束
 		////雜項結束
 		////幫助
 		help(inputStr) {
