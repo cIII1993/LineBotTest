@@ -3021,7 +3021,7 @@ class Bot {
 			if(Math.random() <= 0.3){
 				return '你釣到了：||垃圾||'
 			}
-			if(Math.random() <= 0.015){
+			if(Math.random() <= 1){
 				let item_str = this.extractStr([
 					[1, '雪結晶的髮飾'],
 					[1, '知性之戒指'],
