@@ -182,6 +182,10 @@ class Bot {
 				//SW2.0 城鎮生成
 				if (trigger.match(/^swtw/) != null) {
 					return this.swTw(trigger);
+				}				
+				//sw釣魚骰
+				if (trigger.match(/^swfs[-\+@#\d]*/) != null) {
+					return this.fishing(trigger);
 				}
 				//忍神判定
 				if (trigger.match(/^sg(\+\d+|-\d+)?>=\d+(#\d+)?(@\d+)?$/) != null) {
@@ -320,10 +324,6 @@ class Bot {
 				//cook骰
 				if (trigger.match(/^ck\d+/) != null) {
 					return this.cook(trigger);
-				}
-				//釣魚骰
-				if (trigger.match(/^fishing[-\+@#\d]*/) != null) {
-					return this.fishing(trigger);
 				}
 				//基本骰組 this.xDx+a>b
 				if (trigger.match(/^(\d+d\d+|\d+d)((\+|-)\d+)?((>=|<=|=|>|<)\d+)?$/) != null) {
@@ -3019,28 +3019,19 @@ class Bot {
 		fishing(inputStr) {
 			let returnStr = '你釣到了：'
 			if(Math.random() <= 0.3){
-				return '你釣到了：垃圾'
+				return '你釣到了：||垃圾||'
 			}
-			if(Math.random() <= 0.005){
-				return '你釣到了：〈雪結晶的髮飾〉'
-			}
-			if(Math.random() <= 0.005){
-				return '你釣到了：〈知性之戒指〉'
-			}
-			if(Math.random() <= 0.005){
-				return '你釣到了：〈俊足之戒指〉'
-			}
-			if(Math.random() <= 0.005){
-				return '你釣到了：〈怪力之腕輪〉'
-			}
-			if(Math.random() <= 0.005){
-				return '你釣到了：〈求生外套〉'
-			}
-			if(Math.random() <= 0.005){
-				return '你釣到了：〈平均戒指〉'
-			}
-			if(Math.random() <= 0.005){
-				return '你釣到了：〈夜間護目鏡〉'
+			if(Math.random() <= 0.015){
+				let item_str = this.extractStr([
+					[1, '雪結晶的髮飾'],
+					[1, '知性之戒指'],
+					[1, '俊足之戒指'],
+					[1, '怪力之腕輪'],
+					[1, '求生外套'],
+					[1, '平均戒指'],
+					[1, '夜間護目鏡'],
+				], Math.random())
+				return '你釣到了：||$(item_str)||'
 			}
 			
 		    // 解析輸入指令，允許 @ 或 # 省略，且後方數值支援加減運算（例如 @1+2 或 #-1-1）
