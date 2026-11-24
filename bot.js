@@ -2081,6 +2081,18 @@ class Bot {
 			//returnStr += Math.pow(10, Math.random() * 8 - 2).toFixed(2) + '公尺！';
 			returnStr += dis.toFixed(2) + '公尺！\n';
 			returnStr += '初速度為' + spd.toFixed(2) + 'm/s，';
+			if(spd >= 525){
+				returnStr += '突破了第四宇宙速度，可以飛出銀河系了，';
+			}
+			else if(spd >= 42.1){
+				returnStr += '突破了第三宇宙速度，可以飛出太陽系了，';
+			}
+			else if(spd >= 11.2){
+				returnStr += '突破了第二宇宙速度，可以飛出大氣層了，';
+			}
+			else if(spd >= 7.9){
+				returnStr += '突破了第一宇宙速度，可以繞著拉克希雅飛行了，';
+			}
 			returnStr += '發射角度為' + (angle / Math.PI * 180).toFixed(1) + '°，'
 			returnStr += '共飛行了' + time.toFixed(2) + '秒';
 			return returnStr;
